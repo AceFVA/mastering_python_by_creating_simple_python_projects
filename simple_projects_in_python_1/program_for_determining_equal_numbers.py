@@ -5,4 +5,6 @@ num_1 = int(input("Input your first number: "))
 num_2= int(input("Input your second number: "))
 
 # if num_1 is equal to num_2:
+if num_1 == num_2:
 # print Equal
+    print("Equal")
