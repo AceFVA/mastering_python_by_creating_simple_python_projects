@@ -6,3 +6,11 @@ for i in range(101):
     if i % 10 != 0:
 # print i if not ending with zero
         print(i)
+
+'''
+# Alternative
+
+for i in range(101):
+    if not(str(i).endswith("0")):
+        print(i)
+'''
