@@ -8,6 +8,11 @@ numbers = input("Enter 10 numbers with spaces in between: ")
 num_list = numbers.split()
 
 # set a variable with an initialized value of 0 as a container for the summation of numbers
+summation = 0
+
 # create a for loop and iterate an item on the given list
+for i in range(10):
 # summation += num_list[i]
-#print summation
+    summation += num_list[i]
+# print summatio
+print(summation)
