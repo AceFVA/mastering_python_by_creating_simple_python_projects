@@ -4,7 +4,6 @@
 num_1 = float(input("Input your first number: "))
 num_2 = float(input("Input your second number: "))
 
-
 # check if the second number is not equal to zero
 while num_2 == 0:
     print("Cannot divide by zero.")
