@@ -14,5 +14,5 @@ summation = 0
 for i in range(10):
 # summation += num_list[i]
     summation += int(num_list[i])
-# print summatio
-print(summation)
+# print summation
+print("The summation of all numbers given is: ",summation)
