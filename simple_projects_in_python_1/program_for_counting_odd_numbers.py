@@ -11,7 +11,9 @@ num_list = numbers.split()
 odds = 0
 
 # create a for loop and iterate an item on the given list
+for i in range(10):
 # if the remainder of the number divided by 2 is equal to 1, then that number is odd
+    if int(num_list[i]) % 2 == 1:
 # odd + 1
+        odds += 1
 # print the total number of odds
-
