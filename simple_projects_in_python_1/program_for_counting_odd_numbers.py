@@ -16,4 +16,5 @@ for i in range(10):
     if int(num_list[i]) % 2 == 1:
 # odd + 1
         odds += 1
-# print the total number of odds
+# print the total number of odd
+print("The total number of odds is: ", odds)
