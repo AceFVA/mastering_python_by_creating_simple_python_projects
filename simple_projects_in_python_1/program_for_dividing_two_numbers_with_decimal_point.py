@@ -12,3 +12,4 @@ while num_2 == 0:
 
 # num_1 / num_2
 # print the quotient with decimal point
+print("Result: ", num_1 / num_2)
