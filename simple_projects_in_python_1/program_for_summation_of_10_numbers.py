@@ -13,6 +13,6 @@ summation = 0
 # create a for loop and iterate an item on the given list
 for i in range(10):
 # summation += num_list[i]
-    summation += num_list[i]
+    summation += int(num_list[i])
 # print summatio
 print(summation)
