@@ -16,3 +16,22 @@ for i in range(10):
     summation += int(num_list[i])
 # print summation
 print("The summation of all numbers given is: ",summation)
+
+'''
+# Alternative:
+
+num1 = int(input("Input your first number: "))
+num2 = int(input("Input your second number: "))
+num3 = int(input("Input your third number: "))
+num4 = int(input("Input your fourth number: "))
+num5 = int(input("Input your fifth number: "))
+num6 = int(input("Input your sixth number: "))
+num7 = int(input("Input your seventh number: "))
+num8 = int(input("Input your eighth number: "))
+num9 = int(input("Input your ninth number: "))
+num10 = int(input("Input your tenth number: "))
+
+summation = num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9 + num10
+
+print("The summation of all numbers given is: ", summation)
+'''
