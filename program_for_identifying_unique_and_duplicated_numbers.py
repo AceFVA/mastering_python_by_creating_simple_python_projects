@@ -3,6 +3,9 @@
 # Display "Duplicate" after input when the inputted number have duplicate.
 
 # ask the user to input a number
+while True:
+    num = int(input("Enter a number: "))
+
 # if the number doesn't have a duplicate,
 # print "Unique"
 # if the number does have a duplicate,
