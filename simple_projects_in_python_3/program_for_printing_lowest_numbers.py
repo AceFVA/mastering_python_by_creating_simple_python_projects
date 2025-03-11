@@ -12,7 +12,10 @@ print ("The lowest number is: ", num)
 num_list.insert(0, num)
 
 # ask the user to input a number continuously until input is invalid
+while True:
+    num = int(input("Enter a number: "))
 # if num is less than the number from the list at index 0,
+    
 # print num as the lowest number
 # insert num to the list at index 0
 # if the number from the list at index 0 is less than num,
