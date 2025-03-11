@@ -11,13 +11,10 @@ num_list = numbers.split()
 unique_num = []
 
 # iterate an item in range(10) using for loop
-# if number not in the unique list, 
-# add number to that list
-# print the number
-
-#experiment
-
 for i in range(10):
+# if number not in the unique list, 
     if num_list[i] not in unique_num:
-        unique_num.append(num_list[i])
+# add number to that list
+        unique.append(num_list[i])
+# print the number
         print(unique_num[i])
