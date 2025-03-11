@@ -1,4 +1,4 @@
-# Create a program that ask user to input 2 numbers. Print the quotient of the two numbers without the decimal point
+# Create a program that print all the odd numbers starting from 0 to 100. (Use while loop) 
 
 # set a variable to an initial value of 0
 num = 0
