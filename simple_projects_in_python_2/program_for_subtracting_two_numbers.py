@@ -8,4 +8,4 @@ num_2 = int(input("Input your second number: "))
 difference = num_1 - num_2
 
 # print the difference
-print(difference)
+print("Result: ", difference)
