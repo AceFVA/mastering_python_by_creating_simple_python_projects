@@ -7,7 +7,6 @@ for i in range(0,101):
 # print num
         print(i)
 
-
 '''
 # Alternative
 
