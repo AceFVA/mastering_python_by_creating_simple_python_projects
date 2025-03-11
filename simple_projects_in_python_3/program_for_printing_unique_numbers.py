@@ -18,6 +18,6 @@ unique_num = []
 #experiment
 
 for i in range(10):
-    unique.append(num_list[i])
-    if num_list[i] not in unique:
+    unique_num.append(num_list[i])
+    if num_list[i] not in unique_num:
         print(num_list[i])
