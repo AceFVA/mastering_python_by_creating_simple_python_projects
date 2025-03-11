@@ -13,3 +13,4 @@ while num <= 100:
         num += 1
 
 # when the number is even, num = num +1
+    num += 1
