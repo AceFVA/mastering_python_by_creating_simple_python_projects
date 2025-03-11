@@ -15,6 +15,6 @@ for i in range(10):
 # if number not in the unique list, 
     if num_list[i] not in unique_num:
 # add number to that list
-        unique.append(num_list[i])
+        unique_num.append(num_list[i])
 # print the number
         print(unique_num[i])
