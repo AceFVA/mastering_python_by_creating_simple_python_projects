@@ -13,4 +13,4 @@ while num_2 == 0:
 quotient = num_1 / num_2
 
 # print the quotient without decimal point
-print("Result: ", quotient)
+print("Result: ", int(quotient))
