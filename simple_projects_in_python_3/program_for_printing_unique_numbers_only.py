@@ -10,13 +10,14 @@ num_list = numbers.split()
 unique_num = []
 
 # iterate an item in range(10)
-
+for i in range(10):
 # if a number is not in the list,
-
+    if num_list[i] not in unique_num:
 # add the number to that list
-
+        unique_num.append(num_list[i])
 # if a number is a duplicate
-
+    else:
 # skip
-
-# print the number
+        pass
+# print the unique numbers
+print("The unique numbers are: ", unique_num)
