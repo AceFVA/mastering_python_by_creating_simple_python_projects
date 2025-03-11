@@ -14,3 +14,10 @@ unique_num = []
 # if number not in the unique list, 
 # add number to that list
 # print the number
+
+#experiment
+
+for i in range(10):
+    unique.append(num_list[i])
+    if num_list[i] not in unique:
+        print(num_list[i])
