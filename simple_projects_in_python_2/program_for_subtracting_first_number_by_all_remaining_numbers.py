@@ -13,6 +13,6 @@ first_num = num_list[0]
 # create a for loop and iterate all items from the list except for the first number
 for i in range(1,10):
 # difference = first number - second-last number
-    difference = int(first_num) - int(num_list[i])
+    first_num = int(first_num) - int(num_list[i])
 # print the difference
-print(difference)
+print(first_num)
