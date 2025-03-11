@@ -9,5 +9,8 @@ while num_2 == 0:
     print("Cannot divide by zero.")
     num_2 = int(input("Input your second number: "))
 
-# num_1 / num_2
+# quotient = num_1 / num_2
+quotient = num_1 / num_2
+
 # print the quotient without decimal point
+print(quotient)
