@@ -4,8 +4,10 @@
 numbers = input("Enter 10 numbers with spaces  in between: ")    # example "1 1 2 3 4 5 6 7 8 8"
 
 # create a list for the numbers given by the user
+num_list = numbers.split()
 
 # set a variable with an empy list
+unique_num = []
 
 # iterate an item in range(10)
 
