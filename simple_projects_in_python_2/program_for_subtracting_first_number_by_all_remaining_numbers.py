@@ -5,8 +5,10 @@ numbers = input("Enter 10 numbers with spaces in between: ")
 # example: "100 9 8 7 6 5 4 3 2 1"
 
 # create a list of numbers entered by the user
+num_list = numbers.split()
 
 # set a variable as a container for the first number
+first_num = num_list[0]
 
 # create a for loop and iterate all items from the list
 
