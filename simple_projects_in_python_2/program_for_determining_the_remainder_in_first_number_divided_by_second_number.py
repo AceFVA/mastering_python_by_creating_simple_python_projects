@@ -8,4 +8,4 @@ num_2 = int(input("Input your second number: "))
 remainder = num_1 % num_2
 
 # print remainder
-print(remainder)
+print("Remainder: ", remainder)
