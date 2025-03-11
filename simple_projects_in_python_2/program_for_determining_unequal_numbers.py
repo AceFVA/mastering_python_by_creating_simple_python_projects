@@ -4,5 +4,6 @@
 num_1 = int(input("Input your first number: ")
 num_2 = int(input("Input your second number: ")
 # if num_1 is not equal to num_2:
-
+if num_1 != num_2:
 # print "Not Equal"
+    print("Not equal.")
