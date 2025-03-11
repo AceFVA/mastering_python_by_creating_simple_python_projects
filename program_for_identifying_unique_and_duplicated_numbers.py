@@ -16,4 +16,6 @@ while True:
         print("Unique")
 
 # if the number does have a duplicate,
+    else:
 # print "Duplicate"
+        print("Duplicate")
