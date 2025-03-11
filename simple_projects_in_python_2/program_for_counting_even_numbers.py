@@ -11,9 +11,10 @@ num_list = numbers.split()
 evens = 0
 
 # create a for loop and iterate an item on the given list
-
+for i in range(10):
 # if the remainder of the number divided by 2 is equal to 0, then that number is even
-
-# even = even + 1
-
+    if int(num_list[i]) % 2 == 0:
+# evens = evens + 1
+        evens += 1
 # print the total number of even
+print(evens)
