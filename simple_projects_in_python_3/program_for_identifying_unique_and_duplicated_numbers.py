@@ -7,11 +7,11 @@ unique_num = []
 
 # ask the user to input a number
 while True:
-    num = int(input("Enter a number: "))
-    
+    input_num = int(input("Enter a number: "))
+
 # if the number doesn't have a duplicate,
-    if num not in unique_num:
-        unique_num.append(num)
+    if input_num not in unique_num:
+        unique_num.append(input_num)
 # print "Unique"
         print("Unique")
 # if the number does have a duplicate,
