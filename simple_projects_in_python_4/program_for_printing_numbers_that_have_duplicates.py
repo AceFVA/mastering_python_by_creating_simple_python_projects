@@ -10,6 +10,8 @@ with_duplicate = []
 
 # create a for loop to iterate an item from the list
 # verify if a number have duplicate
+# add the number on the empty list if with duplicate
+# if a number is already on the list, remove the number
+# sort the number in ascending order
 # print the numbers with duplicate
-
 
