@@ -13,3 +13,4 @@ while True:
     num_list.sort(reverse = True)
 
 # print the numbers
+    print("Your numbers in descending order: ", *num_list, sep=" ")
