@@ -9,11 +9,14 @@ summation = 0
 average = 0
  
 # ask the user to input a number continuously until input is invalid
-
+while True:
+    input_num = int(input("Enter a number: "))
 # add the number inputted on the list
-
+    num_list.append(input_num)
 # summation = summation + input_num
-
+    summation += input_num
 # average = summation / number of all items on the list
+    average = summation / len(num_list)
 
 # print average
+    print("The total average is: ", average)
