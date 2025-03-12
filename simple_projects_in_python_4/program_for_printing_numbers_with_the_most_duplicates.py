@@ -15,7 +15,7 @@ while True:
 # iterate the number from the list
     for input_num in num_list:
 # count = count of inputted number on the list
-        count = num_list.count(num)
+        count = num_list.count(input_num)
 # if count is greater than most_count,
         if count > most_count:
 # most_duplicated = inputted number
