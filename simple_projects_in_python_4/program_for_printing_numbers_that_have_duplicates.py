@@ -9,9 +9,15 @@ num_list = numbers.split()
 with_duplicate = []
 
 # create a for loop to iterate an item from the list
+for i in range(10):
 # verify if a number have duplicate
+    if num_list.count(num_list[i]) >= 2:
 # add the number on the empty list if with duplicate
 # if a number is already on the list, remove the number
+        if num_list[i] in with_duplicate:
+            with_duplicate.remove(num_list[i])
+        with_duplicate.append(num_list[i])
 # sort the number in ascending order
+with_duplicate.sort()
 # print the numbers with duplicate
-
+print("The numbers with duplicate are:", " ".join(with_duplicate))
