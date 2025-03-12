@@ -7,7 +7,8 @@ num_list = []
 # ask the user to input a number continuously until input is invalid
 while True:
     input_num = int(input("Enter a number: "))
-
 # add the number inputted on the list
+    num_list.append(input_num)
 # sort the numbers in ascending order
+
 # print the numbers
