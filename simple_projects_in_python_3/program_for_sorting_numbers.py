@@ -10,5 +10,6 @@ while True:
 # add the number inputted on the list
     num_list.append(input_num)
 # sort the numbers in ascending order
-
+    num_list.sort()
 # print the numbers
+    print("Your numbers in ascending order: ", *num_list, sep=" ")
