@@ -4,8 +4,8 @@
 # create a variable with an empty list
 num_list = []
 
-# ask the user to input an inital number
-num = int(input("Enter an inital number: "))
+# ask the user to input an initial number
+num = int(input("Enter an number: "))
 print ("The lowest number is: ", num)
 
 # insert the initial number to the list
