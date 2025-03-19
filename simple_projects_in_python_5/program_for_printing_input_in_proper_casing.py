@@ -3,8 +3,8 @@
 # ask the user to input his/her full name
 full_name = input("Enter your full name: ")
 
-# convert input in proper casing 
+# convert input in proper casing
 in_title_case = full_name.title()
 
 # print full name in proper casing
-print(in_title_case)
+print("Your full name in proper casing: ", in_title_case)
