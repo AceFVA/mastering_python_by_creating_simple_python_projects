@@ -5,5 +5,7 @@
 input_num = input("Enter a number between 0 and 1000: ")
 
 # add zeros at the beginning to make it in a 6-digit format
+with_zeros = input_num.zfill(6)
+
 # print the digits
-print(input_num.zfill(6))
+print(with_zeros)
