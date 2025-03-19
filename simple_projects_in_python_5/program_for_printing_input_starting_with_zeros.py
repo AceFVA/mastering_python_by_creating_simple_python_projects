@@ -2,5 +2,8 @@
 # Add zeros at the beginning to complete the 6 digit.
 
 # ask the user to input any number starting from 0 to 1000
+input_num = input("Enter a number between 0 and 1000: ")
+
 # add zeros at the beginning to make it in a 6-digit format
 # print the digits
+print(input_num.zfill(6))
