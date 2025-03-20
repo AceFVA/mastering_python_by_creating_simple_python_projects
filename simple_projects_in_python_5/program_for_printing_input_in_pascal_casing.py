@@ -13,4 +13,4 @@ splitted_input = in_title_case.split()
 pascal_case = " ".join(splitted_input[:])
 
 # print full name in pascal casing
-print("Your full name in pascal case: ", splitted_input)
+print("Your full name in pascal case: ", pascal_case)
