@@ -13,4 +13,4 @@ input_list = in_lower_case.split()
 in_snake_case = "_".join(input_list[:])
 
 # print full name in snake case
-print(in_snake_case)
+print("Your full name in snake case: ", in_snake_case)
