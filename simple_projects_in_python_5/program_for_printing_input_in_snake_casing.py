@@ -6,8 +6,11 @@ full_name = input("Enter your full name in an incorrect casing: ")
 # convert casing into lower case
 in_lower_case = full_name.lower()
 
-# convert " " to "_"
+# split input
+input_list = in_lower_case.split()
 
+# convert " " to "_"
+in_snake_case = input_list[:].join("_")
 
 # print full name in snake case
-print(in_lower_case)
+print(in_snake_case)
