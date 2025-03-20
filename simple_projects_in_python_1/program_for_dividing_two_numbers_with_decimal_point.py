@@ -1,4 +1,4 @@
-# Create a program that ask user to input 2 numb>
+# Create a program that ask user to input 2 numbers. Print the bigger number
 
 # ask the user to input 2 numbers
 num_1 = float(input("Input your first number: "))
