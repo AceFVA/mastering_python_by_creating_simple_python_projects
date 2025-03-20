@@ -10,7 +10,7 @@ in_lower_case = full_name.lower()
 input_list = in_lower_case.split()
 
 # convert " " to "_"
-in_snake_case = input_list[:].join("_")
+in_snake_case = "_".join(input_list[:])
 
 # print full name in snake case
 print(in_snake_case)
