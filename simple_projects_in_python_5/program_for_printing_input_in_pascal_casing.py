@@ -10,7 +10,7 @@ in_title_case = full_name.title()
 splitted_input = in_title_case.split()
 
 # join each item to turn it into pascal case
-pascal_case = " ".join(splitted_input[:])
+pascal_case = "".join(splitted_input[:])
 
 # print full name in pascal casing
 print("Your full name in pascal case: ", pascal_case)
