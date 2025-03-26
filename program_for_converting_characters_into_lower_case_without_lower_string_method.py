@@ -7,9 +7,16 @@ string = "AcE fRaNcIs V. aGuStIn"
 lower_cased = []
 
 # create a for loop to iterate all items in the given string
+for char in range(len(string)):
 # if char in string is in upper case,
+    if string[char].isupper():
 # change the case of the char and add to the list
+        swapped_case = string[char].swapcase()
+        lower_cased.append(swapped_case)
 # if char is not in upper case,
+    else:
 # add char to the list
+        lower_cased.append(string[char])
+
 # print the string of characters in lower case
-print(lower_cased)
+print("".join(lower_cased))
