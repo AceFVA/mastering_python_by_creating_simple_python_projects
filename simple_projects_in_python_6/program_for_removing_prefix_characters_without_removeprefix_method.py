@@ -2,16 +2,18 @@
 # Create a program that do the same functionality without using removeprefix() function.
 
 # set a variable with  a string of characters
-string = SB19Ace
+string = "SB19 Ace SB19"
 
 # set the prefix to be removed
-prefix = SB19
+prefix = "SB19"
 
-# create a for loop to iterate all characters in the given input
+# if string starts with prefix
+if string.startswith(prefix):
 
 # remove characters based on the desired prefix
+    removed_prefix = string.replace(prefix, "", 1)
 
 # print the string with removed prefix
-print(string)
+print("Removed prefix: ", removed_prefix)
 
 
