@@ -3,20 +3,21 @@
 
 
 # create a variable with string type element
-string =  "ACE FRAnCIS V. AGUSTIN"
+string =  "ACE FRANCIS V. AGUSTIN"
 
 # create a variable the numbers of uppercased and  non-alphanumeric characters
 uppercased = 0
 
 # iterate all characters in the given string
-
+for char in string:
 # if a character is not in lowercase,
-
+    if not(char.islower()):
 # uppercase variable + 1
-
+        uppercased += 1
 # if a character is not alphanumeric,
-
+    elif not(char.isalnum()):
 # uppercase variable + 1
+        uppercased += 1
 
 # if uppercase variable is equal to the length of the string,
 if uppercased == len(string):
