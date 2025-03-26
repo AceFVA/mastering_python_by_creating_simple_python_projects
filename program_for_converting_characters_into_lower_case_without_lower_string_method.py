@@ -1,4 +1,5 @@
-# lower() converts all characters of the string into lower case. Create a program that do the same functionality without using lower() function.
+# lower() converts all characters of the string into lower case.
+# Create a program that do the same functionality without using lower() function.
 
 # set a variable with an element of string of characters
 string = "AcE fRaNcIs V. aGuStIn"
@@ -19,4 +20,4 @@ for char in range(len(string)):
         lower_cased.append(string[char])
 
 # print the string of characters in lower case
-print("".join(lower_cased))
+print("Characters in lower case: ", "".join(lower_cased))
