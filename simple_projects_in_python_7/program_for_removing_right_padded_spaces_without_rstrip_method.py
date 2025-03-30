@@ -9,4 +9,4 @@ string = "      Ace      "
 removed_rspaces = string[::-1].lstrip()
 
 # print the string without the right-padded spaces
-print(removed_rspaces[::-1])
+print("String without right-padded spaces: ", removed_rspaces[::-1])
