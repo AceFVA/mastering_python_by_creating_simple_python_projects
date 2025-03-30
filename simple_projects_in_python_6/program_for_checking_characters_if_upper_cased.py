@@ -21,9 +21,9 @@ for char in string:
 
 # if uppercase variable is equal to the length of the string,
 if uppercased == len(string):
-# print "All characters are in UPPERCASE"
-    print("All characters are in UPPERCASE")
+# print True
+    print("True")
 # if uppercase variable is not equal to the length of the string
 else:
-# print "Not all characters are in UPPERCASE"
-    print("Not all characters are in UPPERCASE")
+# print False
+    print("False")
