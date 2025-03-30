@@ -5,3 +5,5 @@
 # set a parameter
 # if the string begins with the given parameter
 # print True
+# if the string does not begins with the given parameter,
+# print False
