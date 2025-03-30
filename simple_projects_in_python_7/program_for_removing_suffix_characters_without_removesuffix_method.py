@@ -12,4 +12,4 @@ if string.endswith(suffix):
 # replace the characters with "" based on thr given suffix
     removed_suffix = string[::-1].replace(suffix[::-1], "", 1)
 # print the string without the suffix
-print(removed_suffix[::-1])
+print("String without the suffix: ", removed_suffix[::-1])
