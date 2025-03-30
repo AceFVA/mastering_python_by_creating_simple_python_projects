@@ -8,10 +8,15 @@ string = "ace francis v. agustin"
 lowercased = 0
 
 # iterate all items in the given string
+for char in string:
 # if char is not in uppercase,
+    if not(char.isupper()):
 # lower case variable += 1
+        lowercased += 1
 # if char is in alphanumeric character,
+    elif not(char.isalnum()):
 # lower case variable += 1
+        lowercased += 1
 
 # if the length of lower case variable equal to length of the string
 if lowercased == len(string):
