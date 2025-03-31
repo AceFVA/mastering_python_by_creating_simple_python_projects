@@ -3,11 +3,10 @@
 
 # set a variable with a string od characters
 # set a variable for the function parameter
-# set a variabale with initial value of -1 to for displaying "ValueError" message in case parameter is not found 
+# find if there is a parameter present in the string
 # create a dictionary for the location of every parameter found
 # iterate all characters in the string
 # if character is equal to parameter,
-# find the location of the parameter on the string
 # add the char in the dictionary
 # if location is not equal to -1,
 # print the location of the parameter startinb from the right
