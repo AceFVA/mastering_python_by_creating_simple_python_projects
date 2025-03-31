@@ -23,7 +23,7 @@ for char in range(len(string)):
 # if location is not equal to -1,
 if location != -1:
 # print the location of the parameter startinb from the right
-    print(max(locations.values()))
+    print("First right location: ", max(locations.values()))
 # if location is equal to -1,
 else:
 # print ValueError
