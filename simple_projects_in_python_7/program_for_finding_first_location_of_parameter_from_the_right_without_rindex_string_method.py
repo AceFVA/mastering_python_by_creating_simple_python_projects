@@ -8,14 +8,18 @@ string = "Ace Francis V. Agustin"
 parameter = "A"
 
 # find if there is a parameter present in the string
-locaiton = string.find(parameter)
+location = string.find(parameter)
 
 # create a dictionary for the location of every parameter found
 locations = {}
 
 # iterate all characters in the string
+for char in range(len(string)):
 # if character is equal to parameter,
+    if string[char] == parameter:
 # add the char in the dictionary
+        locations[char] = char
+
 # if location is not equal to -1,
 if location != -1:
 # print the location of the parameter startinb from the right
