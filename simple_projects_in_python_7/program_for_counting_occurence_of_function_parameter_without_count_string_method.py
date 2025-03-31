@@ -11,7 +11,11 @@ parameter = "A"
 parameter_count = 0
 
 # iterate all characters in the given string
+for char in string:
 # if char is equal to the function parameter,
+    if char == parameter:
 # add char to the list
+        parameter_count += 1
+
 # print the count of function parameter that is in the string
-print(parameter_count)
+print("Parameter count: ", parameter_count)
