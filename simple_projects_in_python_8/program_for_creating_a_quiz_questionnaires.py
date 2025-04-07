@@ -1,7 +1,10 @@
 # Quiz Creator
 
-# open a new file
+# import json module for dictionary in readable format
+import json
 
+# open a new file
+questionnaire_file = open("Questionnaires.json", "w")
 
 # create a dictionary for the questions, choices and answers to be inputted by user
 main_questionnaire_dict = {}
@@ -37,5 +40,7 @@ while True:
 	question_num += 1
 
 # collect all the inputs to the file
-# close the file
+json.dump(main_questionnaire_dict, questionnaire_file, indent = 4)
 
+# close the file
+questionnaire_file.close()
