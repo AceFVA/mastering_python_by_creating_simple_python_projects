@@ -17,12 +17,15 @@ while num:
 		print("What are the four possible  answers?: ")
 		main_questionnaire_dict["Questions"][f"Choices{i + 1}"] = {}
 
+		# ask the user for four possible answers
 		for j in range(1, 5):
 			choices = input(f"Choice {j}: ")
-			main_questionnaire_dict["Questions"][f"Choices{i + 1}"][f"C{j + 1}"] = choices
+			main_questionnaire_dict["Questions"][f"Choices{i + 1}"][f"C{j}"] = choices
 
+		#ask the user to input the correct answer
+		answer = input("What is the correct answer?: ")
+		main_questionnaire_dict["Questions"][f"Answer{i + 1}"] = answer
 	print(main_questionnaire_dict)
-# ask the user the four possible answer
-# ask the user to input the correct answer
+
 # collect all the inputs to the file
 # close the file
