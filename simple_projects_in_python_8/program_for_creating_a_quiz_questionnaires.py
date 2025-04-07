@@ -29,7 +29,6 @@ while True:
 	#ask the user to input the correct answer
 	answer = input("What is the correct answer?: ")
 	main_questionnaire_dict[f"Question {question_num}"][f"Answer{question_num}"] = answer
-	print(main_questionnaire_dict)
 
 	# ask if the user wants to continue adding questions
 	additional_questions = input("Do you wish to continue adding questions? (Y/N): ")
