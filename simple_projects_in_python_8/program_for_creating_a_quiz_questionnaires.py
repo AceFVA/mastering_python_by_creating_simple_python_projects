@@ -4,12 +4,21 @@
 import json
 
 # open a new file
-questionnaire_file = open("Questionnaires.json", "w")
+questionnaire_file = open("questionnaires.json", "w")
 
 # create a dictionary for the questions, choices and answers to be inputted by user
 main_questionnaire_dict = {}
 
 question_num = 1
+
+welcome_msg = "Welcome to Quiz Creator!"
+print(welcome_msg.center(48))
+print("\nHow this works?")
+print("1. Enter a question")
+print("2. Input the four possible answers to the question.")
+print("3. Type the correct answer")
+print("4. Enter and wait for the confirmation that the program is finish.\n")
+print("Let's Start!\n")
 
 # ask the user to input a question
 while True:
@@ -43,3 +52,5 @@ json.dump(main_questionnaire_dict, questionnaire_file, indent = 4)
 
 # close the file
 questionnaire_file.close()
+
+print("Thank you! You questions have been added to questionnaires.json")
