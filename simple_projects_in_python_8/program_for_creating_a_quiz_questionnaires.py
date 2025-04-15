@@ -39,15 +39,52 @@ while True:
 	answer = input("What is the correct answer?: ")
 	main_questionnaire_dict[f"Question {question_num}"][f"Answer{question_num}"] = answer
 
-	# ask if the user wants to continue adding questions
-	additional_questions = input("Do you wish to continue adding questions? (Y/N): ")
+	# ask if the user wants to add, remove, or edit questions
+	print("\nDo you want to add, remove or edit questions?")
+	print("1. Add questions")
+	print("2. Remove questions")
+	print("3. Save and exit")
 
-	if additional_questions.upper() != "Y":
+	selected_opt = int(input("\nPlease select an option (1-3): "))
+
+	
+	# if selected_opt is equal to 1,
+	if selected_opt == 1:			
+		# question_num += 1
+		question_num += 1
+
+	# if selected_opt is equal to 2,
+	elif selected_opt == 2:
+		# ask the user which question to be removed
+		question_removal = input("Which question do you want to remove? (e.g. Question 1): ")
+
+		# verify if the question exist in the dictionary
+		if question_removal in main_questionnaire_dict:
+			main_questionnaire_dict.pop(question_removal)
+			print(f"{question_removal} has been removed.")
+			
+		else:
+			print(f"{question_removal} does not exist.")
+	
+	# if selected_opt is equal to 3,
+	elif selected_opt == 3:
+		# print that all questions have been saved
+		print("Your questions have been saved")
+		break
+
+	else:
+		print("Invalid input. Proceeding to exit...\nAll questions have been saved.")
+
+
+
+	'''if additional_questions.upper() != "Y":
 		question_removal = input("Do you want to remove a question? (Y/N): ")
 
+		# if the user wants to remove a question
 		if question_removal.upper() == "Y":
 			question_to_remove = input("Which question do you want to remove? (e.g. Question 1): ")
 
+			# check if the question exists in the dictionary
 			if question_to_remove in main_questionnaire_dict:
 				main_questionnaire_dict.pop(question_to_remove)
 				print(f"{question_to_remove} has been removed.")
@@ -55,12 +92,22 @@ while True:
 			else:
 				print(f"{question_to_remove} does not exist.")
 
+		# if the user does not want to remove a question
 		else:
 			print("No questions were removed.")
-			break
 
+			question_saving = input("Do you want to save the questions? (Y/N): ")
+			if question_saving.upper() == "Y":
+				print("Your questions have been saved.")
+				break
+			else:
+				print("Your questions have not been saved.")
+				main_questionnaire_dict.clear()
+				print("All questions have been removed.")
 
-	question_num += 1
+				break
+
+			break'''
 
 # collect all the inputs to the file
 json.dump(main_questionnaire_dict, questionnaire_file, indent = 4)
