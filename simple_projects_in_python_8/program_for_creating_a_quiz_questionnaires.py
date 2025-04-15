@@ -33,7 +33,7 @@ while True:
 	# ask the user for four possible answers
 	for i in range(1, 5):
 		choices = input(f"Choice {i}: ")
-		main_questionnaire_dict[f"Question {question_num}"][f"Choices{question_num}"][f"C{i}"] = choices
+		main_questionnaire_dict[f"Question {question_num}"][f"Choices{question_num}"][f"Choice {i}"] = choices
 
 	#ask the user to input the correct answer
 	answer = input("What is the correct answer?: ")
