@@ -43,7 +43,22 @@ while True:
 	additional_questions = input("Do you wish to continue adding questions? (Y/N): ")
 
 	if additional_questions.upper() != "Y":
-		break
+		question_removal = input("Do you want to remove a question? (Y/N): ")
+
+		if question_removal.upper() == "Y":
+			question_to_remove = input("Which question do you want to remove? (e.g. Question 1): ")
+
+			if question_to_remove in main_questionnaire_dict:
+				main_questionnaire_dict.pop(question_to_remove)
+				print(f"{question_to_remove} has been removed.")
+
+			else:
+				print(f"{question_to_remove} does not exist.")
+
+		else:
+			print("No questions were removed.")
+			break
+
 
 	question_num += 1
 
