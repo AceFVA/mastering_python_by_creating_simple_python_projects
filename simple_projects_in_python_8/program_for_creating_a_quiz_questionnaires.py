@@ -4,7 +4,7 @@
 import json
 
 # open a new file
-questionnaire_file = open("quiz.json", "w")
+questionnaire_file = open("quiz_questionnaires.json", "w")
 
 # create a dictionary for the questions, choices and answers to be inputted by user
 main_questionnaire_dict = {}
@@ -94,42 +94,10 @@ while True:
 	if question_num == 0:
 		break
 
-	'''if additional_questions.upper() != "Y":
-		question_removal = input("Do you want to remove a question? (Y/N): ")
-
-		# if the user wants to remove a question
-		if question_removal.upper() == "Y":
-			question_to_remove = input("Which question do you want to remove? (e.g. Question 1): ")
-
-			# check if the question exists in the dictionary
-			if question_to_remove in main_questionnaire_dict:
-				main_questionnaire_dict.pop(question_to_remove)
-				print(f"{question_to_remove} has been removed.")
-
-			else:
-				print(f"{question_to_remove} does not exist.")
-
-		# if the user does not want to remove a question
-		else:
-			print("No questions were removed.")
-
-			question_saving = input("Do you want to save the questions? (Y/N): ")
-			if question_saving.upper() == "Y":
-				print("Your questions have been saved.")
-				break
-			else:
-				print("Your questions have not been saved.")
-				main_questionnaire_dict.clear()
-				print("All questions have been removed.")
-
-				break
-
-			break'''
-
 # collect all the inputs to the file
 json.dump(main_questionnaire_dict, questionnaire_file, indent = 4)
 
 # close the file
 questionnaire_file.close()
 
-print("Thank you! You questions have been added to quiz.json")
+print("Thank you! You questions have been added to the file named quiz_questionnaires.json")
