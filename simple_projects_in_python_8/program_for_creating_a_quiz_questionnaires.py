@@ -126,6 +126,20 @@ while True:
 			else:
 				print(f"{question_editing} does not exist.")
 
+		elif int(selected_opt) == 4:
+			# display the current questions added
+			print("\nCurrent questions in the questionnaire:")
+
+			# iterate the items inside the main dictionary
+			for key, value in main_questionnaire_dict.items(): # key = Question n, value = nested dictionaries
+				print(f"{key}:") # prints Question n:
+				print(f"  Question: {value['Q' + key.split()[-1]]}") 
+				print("  Choices:")
+				# iterate the choices inside the nested dictionary
+				for choice_key, choice_value in value[f"Choices{key.split()[-1]}"].items():
+					print(f"    {choice_key}: {choice_value}")
+				print(f"  Answer: {value[f'Answer{key.split()[-1]}']}")
+
 		# if selected_opt is equal to 3,
 		elif int(selected_opt) == 5:
 			# print that all questions have been saved
