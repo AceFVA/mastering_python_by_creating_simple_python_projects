@@ -105,6 +105,7 @@ while True:
 
 			question_editing = input("Which question do you want to edit? (e.g. Question 1): ")
 
+			# verify if the question exist in the dictionary
 			if question_editing in main_questionnaire_dict:
 				# ask the user to input a new question
 				question = input("What is your new question?: ")
@@ -121,6 +122,9 @@ while True:
 				# ask the user to input the new correct answer
 				answer_editing = input("What is the new correct answer?: ")
 				main_questionnaire_dict[question_editing][f"Answer{question_editing.split()[-1]}"] = answer_editing
+
+			else:
+				print(f"{question_editing} does not exist.")
 
 		# if selected_opt is equal to 3,
 		elif int(selected_opt) == 5:
