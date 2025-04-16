@@ -43,7 +43,9 @@ while True:
 	print("\nDo you want to add or remove questions?")
 	print("1. Add questions")
 	print("2. Remove questions")
-	print("3. Save and exit")
+	print("3. Edit questions")
+	print("4. View questions")
+	print("5. Save and exit")
 
 	while True:
 		selected_opt = input("\nPlease select an option (1-3): ")
@@ -65,9 +67,11 @@ while True:
 		elif int(selected_opt) == 2:
 			# display the current questions added
 			print("\nCurrent questions in the questionnaire:")
-			for key, value in main_questionnaire_dict.items():
-				print(f"{key}:")
-				print(f"  Question: {value['Q' + key.split()[-1]]}")
+
+			# iterate the items inside the main dictionary
+			for key, value in main_questionnaire_dict.items(): # key = Question n, value = nested dictionaries
+				print(f"{key}:") # prints Question n:
+				print(f"  Question: {value['Q' + key.split()[-1]]}") 
 				print("  Choices:")
 				for choice_key, choice_value in value[f"Choices{key.split()[-1]}"].items():
 					print(f"    {choice_key}: {choice_value}")
