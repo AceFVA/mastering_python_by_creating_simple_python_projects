@@ -94,10 +94,10 @@ while True:
 				for key, value in main_questionnaire_dict.items():
 					# create a new key with the adjusted question number
 					adjusted_main_dict[f"Question {new_question_num}"] = {
-													f"Q{new_question_num}": value[f"Q{key.split()[-1]}"],
-													f"Choices{new_question_num}": value[f"Choices{key.split()[-1]}"],
-													f"Answer{new_question_num}": value[f"Answer{key.split()[-1]}"]
-													}
+											f"Q{new_question_num}": value[f"Q{key.split()[-1]}"],
+											f"Choices{new_question_num}": value[f"Choices{key.split()[-1]}"],
+											f"Answer{new_question_num}": value[f"Answer{key.split()[-1]}"]
+											}
 					new_question_num += 1
 
 				# update the main dictionary with the adjusted numbering
