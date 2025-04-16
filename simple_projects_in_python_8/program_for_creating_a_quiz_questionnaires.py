@@ -122,8 +122,6 @@ while True:
 				answer_editing = input("What is the new correct answer?: ")
 				main_questionnaire_dict[question_editing][f"Answer{question_editing.split()[-1]}"] = answer_editing
 
-				
-
 		# if selected_opt is equal to 3,
 		elif int(selected_opt) == 5:
 			# print that all questions have been saved
