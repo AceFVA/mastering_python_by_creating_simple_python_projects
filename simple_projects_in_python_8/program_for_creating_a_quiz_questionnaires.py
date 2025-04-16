@@ -48,14 +48,14 @@ while True:
 	print("5. Save and exit")
 
 	while True:
-		selected_opt = input("\nPlease select an option (1-3): ")
+		selected_opt = input("\nPlease select an option (1-5): ")
 
 		# verify if input is invalid
 		if not(selected_opt.isdigit()):
 			print("Invalid input. Try again.")
 		
 		elif int(selected_opt) < 1 or int(selected_opt) > 5:
-			print("Choose only between 1 to 3.")
+			print("Choose only between 1 to 5.")
 
 		# if selected_opt is equal to 1,
 		elif int(selected_opt) == 1:			
@@ -107,8 +107,16 @@ while True:
 
 			if question_editing in main_questionnaire_dict:
 				# ask the user to input a question
-				question = input("What is your question?: ")
+				question = input("What is your new question?: ")
 				main_questionnaire_dict[question_editing][f"Q{question_editing.split()[-1]}"] = question
+
+			print("What are the new four possible  answers?: ")
+			main_questionnaire_dict[question_editing][f"Choices{question_editing.split()[-1]}"] = {}
+
+			# ask the user for the new four possible answers
+			for i in range(1, 5):
+				choices = input(f"Choice {i}: ")
+				main_questionnaire_dict[question_editing][f"Choices{question_editing.split()[-1]}"][f"Choice {i}"] = choices
 
 		# if selected_opt is equal to 3,
 		elif int(selected_opt) == 5:
