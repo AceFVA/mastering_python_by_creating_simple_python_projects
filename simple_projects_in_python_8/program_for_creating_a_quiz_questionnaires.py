@@ -85,10 +85,25 @@ while True:
 			if question_removal in main_questionnaire_dict:
 				main_questionnaire_dict.pop(question_removal)
 				print(f"{question_removal} has been removed.")
-			
+
+				# Adjust the numbering of the remaining questions
+				adjusted_main_dict = {}
+				new_question_num = 1
+
+				for key, value in main_questionnaire_dict.items():
+					adjusted_main_dict[f"Question {new_question_num}"] = {
+													f"Q{new_question_num}": value[f"Q{key.split()[-1]}"],
+													f"Choices{new_question_num}": value[f"Choices{key.split()[-1]}"],
+													f"Answer{new_question_num}": value[f"Answer{key.split()[-1]}"]
+													}
+					new_question_num += 1
+
+				main_questionnaire_dict = adjusted_main_dict
+
 			else:
 				print(f"{question_removal} does not exist.")
 	
+		# if selected_opt is equal to 3,
 		elif int(selected_opt) == 3:
 			# display the current questions added
 			print("\nCurrent questions in the questionnaire:")
@@ -126,6 +141,7 @@ while True:
 			else:
 				print(f"{question_editing} does not exist.")
 
+		# if selected_opt is equal to 4,
 		elif int(selected_opt) == 4:
 			# display the current questions added
 			print("\nCurrent questions in the questionnaire:")
@@ -140,7 +156,7 @@ while True:
 					print(f"    {choice_key}: {choice_value}")
 				print(f"  Answer: {value[f'Answer{key.split()[-1]}']}")
 
-		# if selected_opt is equal to 3,
+		# if selected_opt is equal to 5,
 		elif int(selected_opt) == 5:
 			# print that all questions have been saved
 			print("Your questions have been saved")
