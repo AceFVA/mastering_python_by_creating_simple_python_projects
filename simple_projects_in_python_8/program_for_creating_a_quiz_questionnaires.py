@@ -54,7 +54,7 @@ while True:
 		if not(selected_opt.isdigit()):
 			print("Invalid input. Try again.")
 		
-		elif int(selected_opt) < 1 or int(selected_opt) > 3:
+		elif int(selected_opt) < 1 or int(selected_opt) > 5:
 			print("Choose only between 1 to 3.")
 
 		# if selected_opt is equal to 1,
@@ -73,6 +73,7 @@ while True:
 				print(f"{key}:") # prints Question n:
 				print(f"  Question: {value['Q' + key.split()[-1]]}") 
 				print("  Choices:")
+				# iterate the choices inside the nested dictionary
 				for choice_key, choice_value in value[f"Choices{key.split()[-1]}"].items():
 					print(f"    {choice_key}: {choice_value}")
 				print(f"  Answer: {value[f'Answer{key.split()[-1]}']}")
@@ -88,8 +89,29 @@ while True:
 			else:
 				print(f"{question_removal} does not exist.")
 	
-		# if selected_opt is equal to 3,
 		elif int(selected_opt) == 3:
+			# display the current questions added
+			print("\nCurrent questions in the questionnaire:")
+
+			# iterate the items inside the main dictionary
+			for key, value in main_questionnaire_dict.items(): # key = Question n, value = nested dictionaries
+				print(f"{key}:") # prints Question n:
+				print(f"  Question: {value['Q' + key.split()[-1]]}") 
+				print("  Choices:")
+				# iterate the choices inside the nested dictionary
+				for choice_key, choice_value in value[f"Choices{key.split()[-1]}"].items():
+					print(f"    {choice_key}: {choice_value}")
+				print(f"  Answer: {value[f'Answer{key.split()[-1]}']}")
+
+			question_editing = input("Which question do you want to edit? (e.g. Question 1): ")
+
+			if question_editing in main_questionnaire_dict:
+				# ask the user to input a question
+				question = input("What is your question?: ")
+				main_questionnaire_dict[question_editing][f"Q{question_editing.split()[-1]}"] = question
+
+		# if selected_opt is equal to 3,
+		elif int(selected_opt) == 5:
 			# print that all questions have been saved
 			print("Your questions have been saved")
 			question_num = 0
