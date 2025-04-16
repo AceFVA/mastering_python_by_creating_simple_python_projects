@@ -35,7 +35,7 @@ while True:
 		choices = input(f"Choice {i}: ")
 		main_questionnaire_dict[f"Question {question_num}"][f"Choices{question_num}"][f"Choice {i}"] = choices
 
-	#ask the user to input the correct answer
+	# ask the user to input the correct answer
 	answer = input("What is the correct answer?: ")
 	main_questionnaire_dict[f"Question {question_num}"][f"Answer{question_num}"] = answer
 
@@ -106,17 +106,23 @@ while True:
 			question_editing = input("Which question do you want to edit? (e.g. Question 1): ")
 
 			if question_editing in main_questionnaire_dict:
-				# ask the user to input a question
+				# ask the user to input a new question
 				question = input("What is your new question?: ")
 				main_questionnaire_dict[question_editing][f"Q{question_editing.split()[-1]}"] = question
 
-			print("What are the new four possible  answers?: ")
-			main_questionnaire_dict[question_editing][f"Choices{question_editing.split()[-1]}"] = {}
+				print("What are the new four possible  answers?: ")
+				main_questionnaire_dict[question_editing][f"Choices{question_editing.split()[-1]}"] = {}
 
-			# ask the user for the new four possible answers
-			for i in range(1, 5):
-				choices = input(f"Choice {i}: ")
-				main_questionnaire_dict[question_editing][f"Choices{question_editing.split()[-1]}"][f"Choice {i}"] = choices
+				# ask the user for the new four possible answers
+				for i in range(1, 5):
+					choices_editing = input(f"Choice {i}: ")
+					main_questionnaire_dict[question_editing][f"Choices{question_editing.split()[-1]}"][f"Choice {i}"] = choices_editing
+				
+				# ask the user to input the new correct answer
+				answer_editing = input("What is the new correct answer?: ")
+				main_questionnaire_dict[question_editing][f"Answer{question_editing.split()[-1]}"] = answer_editing
+
+				
 
 		# if selected_opt is equal to 3,
 		elif int(selected_opt) == 5:
