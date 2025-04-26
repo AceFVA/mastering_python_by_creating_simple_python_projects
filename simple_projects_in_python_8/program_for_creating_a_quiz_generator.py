@@ -41,11 +41,11 @@ def display_menu():
             console.print("[yellow]Exiting the quiz. Goodbye![/yellow]")
         else:
             print("[red]Invalid option.[/red] Please try again.")
-            display_menu(selected_option)
+            display_menu()
 
     except ValueError:
         print("Invalid input. Please enter a number between 1 and 3.")
-        display_menu(selected_option)
+        display_menu()
 
 def start_quiz():
     # ask the user to input their name for saving scores
@@ -55,13 +55,18 @@ def start_quiz():
     score = 0
     total_questions = len(quiz_data)
 
-    random.shuffle(list(quiz_data))
-
     for key, value in quiz_data.items():
-        print(f"  Question: {value['Q' + key.split()[-1]]}")
+        # randomize the questions and choices
+        randomizer = random.randint(1, len(quiz_data))
+        shuffled_values = list(quiz_data.values())
+        random.shuffle(shuffled_values)
+        question_key = f"Q{randomizer}" # Ex. Q1, Q2, Q3, etc.
+        question_value = f"Choices{randomizer}" # Ex. Choices1, Choices2, Choices3, etc.
+        if question_key in value:
+            print(f"  Question: {value[question_key]}")
 
         ascii_num = 97  # ASCII value for 'a'
-        for choice_value in value[f"Choices{key.split()[-1]}"].items():
+        for choice_value in value[question_value].items():
             print(f"    {chr(ascii_num).upper()}. {choice_value[1]}")
             ascii_num += 1
 
