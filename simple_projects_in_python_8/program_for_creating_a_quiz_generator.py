@@ -32,6 +32,7 @@ def display_menu():
         if selected_option == 1:
             # Start Quiz
             print("[yellow]Starting the quiz...[/yellow]")
+            start_quiz()
         elif selected_option == 2:
             # View Leaderboard
             print("[yellow]Displaying the leaderboard...[/yellow]")
@@ -46,9 +47,26 @@ def display_menu():
         print("Invalid input. Please enter a number between 1 and 3.")
         display_menu(selected_option)
 
+def start_quiz():
+    # ask the user to input their name for saving scores
+    player_name = input("Please enter your name: ")
+    print(f"Hello, {player_name}! Let's start the quiz.")
+
+    score = 0
+    total_questions = len(quiz_data)
+
+    random.shuffle(list(quiz_data))
+
+    for key, value in quiz_data.items():
+        print(f"  Question: {value['Q' + key.split()[-1]]}")
+
+        ascii_num = 97  # ASCII value for 'a'
+        for choice_value in value[f"Choices{key.split()[-1]}"].items():
+            print(f"    {chr(ascii_num).upper()}. {choice_value[1]}")
+            ascii_num += 1
+
 display_menu()
 
-# ask the user to input their name for saving scores
 # let the user answer the questions
 # count the score
 # save the score to a file for the leaderboard
