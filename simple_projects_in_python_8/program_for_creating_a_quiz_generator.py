@@ -61,14 +61,16 @@ def start_quiz():
         shuffled_values = list(quiz_data.values())
         random.shuffle(shuffled_values)
         question_key = f"Q{randomizer}" # Ex. Q1, Q2, Q3, etc.
-        question_value = f"Choices{randomizer}" # Ex. Choices1, Choices2, Choices3, etc.
+        choices_key = f"Choices{question_key[-1]}" # Ex. Choices1, Choices2, Choices3, etc.
         if question_key in value:
             print(f"  Question: {value[question_key]}")
 
-        ascii_num = 97  # ASCII value for 'a'
-        for choice_value in value[question_value].items():
-            print(f"    {chr(ascii_num).upper()}. {choice_value[1]}")
-            ascii_num += 1
+            ascii_num = 65  # ASCII value for 'A'
+            print(question_key)
+            for choice_value in value[choices_key].items():
+                print(f"    {chr(ascii_num)}. {choice_value[1]}")
+                ascii_num += 1 
+
 
 display_menu()
 
