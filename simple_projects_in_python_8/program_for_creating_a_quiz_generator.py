@@ -4,7 +4,6 @@
 import json
 import random
 import rich
-import time
 
 from rich.console import Console
 from rich.table import Table
@@ -76,17 +75,23 @@ def start_quiz():
 
             player_answer = input("Answer (A/B/C/D): ")
             
-            if player_answer.upper() == "A":
-                converted_answer = quiz_data[f"{key}"][f"{choices_key}"]["Choice 1"]
+            converted_answer = 0
+            ascii_num = 65
+            for num, (choices_key, choice_value) in enumerate(value[choices_key].items()):
+                if ord(player_answer.upper()) == ascii_num:
+                    converted_answer = choice_value
+                    break
+                
+                else:
+                    ascii_num += 1
 
-            elif player_answer.upper() == "B":
-                converted_answer = quiz_data[f"{key}"][f"{choices_key}"]["Choice 2"]
-
-            elif player_answer.upper() == "C":
-                converted_answer = quiz_data[f"{key}"][f"{choices_key}"]["Choice 3"]
-
-            elif player_answer.upper() == "D":
-                converted_answer = quiz_data[f"{key}"][f"{choices_key}"]["Choice 4"]
+            # Check if the answer is correct
+            if converted_answer == quiz_data[f"{key}"][f"Answer{randomizer}"]:
+                print("Correct!")
+                score += 1
+            else:
+                print("Wrong!")
+                print(f"The correct answer is: {quiz_data[f'{key}'][f'Answer{randomizer}']}")
 
 display_menu()
 
