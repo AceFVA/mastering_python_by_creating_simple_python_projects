@@ -43,8 +43,12 @@ def display_menu():
             print("[red]Invalid option.[/red] Please try again.")
             display_menu()
 
+    except KeyboardInterrupt:
+        console.print("[red]Input interrupted by the user.[/red]")
+        console.print("[yellow]Exiting the quiz. Goodbye![/yellow]")
+
     except ValueError:
-        print("Invalid input. Please enter a number between 1 and 3.")
+        console.print("[red]Invalid input.[/red] Please enter a number between 1 and 3.")
         display_menu()
 
 def start_quiz():
@@ -63,14 +67,26 @@ def start_quiz():
         question_key = f"Q{randomizer}" # Ex. Q1, Q2, Q3, etc.
         choices_key = f"Choices{question_key[-1]}" # Ex. Choices1, Choices2, Choices3, etc.
         if question_key in value:
-            print(f"  Question: {value[question_key]}")
+            print(f"Question: {value[question_key]}")
 
             ascii_num = 65  # ASCII value for 'A'
-            print(question_key)
             for choice_value in value[choices_key].items():
                 print(f"    {chr(ascii_num)}. {choice_value[1]}")
-                ascii_num += 1 
+                ascii_num += 1
 
+            player_answer = input("Answer (A/B/C/D): ")
+            
+            if player_answer.upper() == "A":
+                converted_answer = quiz_data[f"{key}"][f"{choices_key}"]["Choice 1"]
+
+            elif player_answer.upper() == "B":
+                converted_answer = quiz_data[f"{key}"][f"{choices_key}"]["Choice 2"]
+
+            elif player_answer.upper() == "C":
+                converted_answer = quiz_data[f"{key}"][f"{choices_key}"]["Choice 3"]
+
+            elif player_answer.upper() == "D":
+                converted_answer = quiz_data[f"{key}"][f"{choices_key}"]["Choice 4"]
 
 display_menu()
 
