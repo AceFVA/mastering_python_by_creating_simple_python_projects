@@ -37,14 +37,14 @@ def display_menu():
             print("[yellow]Displaying the leaderboard...[/yellow]")
         elif selected_option == 3:
             # Exit
-            console.print("[yellow]Exiting the quiz. Goodbye![/yellow]")
+            console.print("[yellow]Exiting the quiz... Goodbye![/yellow]")
         else:
             print("[red]Invalid option.[/red] Please try again.")
             display_menu()
 
     except KeyboardInterrupt:
         console.print("[red]Input interrupted by the user.[/red]")
-        console.print("[yellow]Exiting the quiz. Goodbye![/yellow]")
+        console.print("[yellow]Exiting the quiz... Goodbye![/yellow]")
 
     except ValueError:
         console.print("[red]Invalid input.[/red] Please enter a number between 1 and 3.")
@@ -57,43 +57,48 @@ def start_quiz():
 
     score = 0
     total_questions = len(quiz_data)
+    
+    while True:
+        for key, value in quiz_data.items():
+            # randomize the questions and choices
+            randomizer = random.randint(1, len(quiz_data))
+            shuffled_values = list(quiz_data.values())
+            random.shuffle(shuffled_values)
+            question_key = f"Q{randomizer}" # Ex. Q1, Q2, Q3, etc.
+            choices_key = f"Choices{question_key[-1]}" # Ex. Choices1, Choices2, Choices3, etc.
 
-    for key, value in quiz_data.items():
-        # randomize the questions and choices
-        randomizer = random.randint(1, len(quiz_data))
-        shuffled_values = list(quiz_data.values())
-        random.shuffle(shuffled_values)
-        question_key = f"Q{randomizer}" # Ex. Q1, Q2, Q3, etc.
-        choices_key = f"Choices{question_key[-1]}" # Ex. Choices1, Choices2, Choices3, etc.
+            if question_key in value:
+                print(f"Question: {value[question_key]}")
 
-        if question_key in value:
-            print(f"Question: {value[question_key]}")
-
-            ascii_num = 65  # ASCII value for 'A'
-            for choice_value in value[choices_key].items():
-                print(f"    {chr(ascii_num)}. {choice_value[1]}")
-                ascii_num += 1
-
-            # let the user answer the questions
-            player_answer = input("Answer (A/B/C/D): ")
-            
-            converted_answer = 0
-            ascii_num = 65
-            for num, (choices_key, choice_value) in enumerate(value[choices_key].items()):
-                if ord(player_answer.upper()) == ascii_num:
-                    converted_answer = choice_value
-                    break
-                
-                else:
+                ascii_num = 65  # ASCII value for 'A'
+                for choice_value in value[choices_key].items():
+                    print(f"    {chr(ascii_num)}. {choice_value[1]}")
                     ascii_num += 1
 
-            # Check if the answer is correct
-            if converted_answer == quiz_data[f"{key}"][f"Answer{randomizer}"]:
-                print("Correct!")
-                score += 1
-            else:
-                print("Wrong!")
-                print(f"The correct answer is: {quiz_data[f'{key}'][f'Answer{randomizer}']}")
+                # let the user answer the questions
+                player_answer = input("Answer (A/B/C/D): ")
+                
+                converted_answer = 0
+                ascii_num = 65
+                for num, (choices_key, choice_value) in enumerate(value[choices_key].items()):
+                    if ord(player_answer.upper()) == ascii_num:
+                        converted_answer = choice_value
+                        ascii_num = 65
+                        break
+                    
+                    else:
+                        ascii_num += 1
+
+                # Check if the answer is correct
+                if converted_answer == quiz_data[f"{key}"][f"Answer{randomizer}"]:
+                    print("Correct!")
+                    score += 1
+                    continue
+
+                else:
+                    print("Wrong!")
+                    print(f"The correct answer is: {quiz_data[f'{key}'][f'Answer{randomizer}']}")
+                    continue
 
     # count the score
     total_score = score / total_questions * 100
