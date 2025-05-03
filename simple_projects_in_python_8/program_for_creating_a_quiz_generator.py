@@ -65,6 +65,7 @@ def start_quiz():
         random.shuffle(shuffled_values)
         question_key = f"Q{randomizer}" # Ex. Q1, Q2, Q3, etc.
         choices_key = f"Choices{question_key[-1]}" # Ex. Choices1, Choices2, Choices3, etc.
+
         if question_key in value:
             print(f"Question: {value[question_key]}")
 
@@ -73,6 +74,7 @@ def start_quiz():
                 print(f"    {chr(ascii_num)}. {choice_value[1]}")
                 ascii_num += 1
 
+            # let the user answer the questions
             player_answer = input("Answer (A/B/C/D): ")
             
             converted_answer = 0
@@ -93,8 +95,10 @@ def start_quiz():
                 print("Wrong!")
                 print(f"The correct answer is: {quiz_data[f'{key}'][f'Answer{randomizer}']}")
 
+    # count the score
+    total_score = score / total_questions * 100
+    print(f"Your score: {score}/{total_questions} ({total_score:.2f}%)")
+
 display_menu()
 
-# let the user answer the questions
-# count the score
 # save the score to a file for the leaderboard
