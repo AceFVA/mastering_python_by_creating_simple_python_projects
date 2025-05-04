@@ -57,61 +57,14 @@ def start_quiz():
 
     score = 0
     total_questions = len(quiz_data)
-    answered_questions = -1
-    question_prompted = []
+    question_key = list(quiz_data.keys())
+    random.shuffle(question_key)  # Shuffle the questions for randomness
 
-    while answered_questions <= total_questions:
-        # randomize the questions and ensure no repetition
-        if len(question_prompted) == len(quiz_data):
-            break  # Exit loop if all questions have been asked
+    for value in question_key:
+        question_num = f"{value.split()[-1]}"
+        question = quiz_data[value][f"Q{question_num}"]
 
-        while len(question_prompted) <= len(quiz_data):
-            randomizer = random.randint(1, len(quiz_data))
-            if randomizer not in question_prompted:
-                question_prompted.append(randomizer)
-                answered_questions += 1
-
-            else:
-                continue
-
-            for key, value in quiz_data.items():
-                shuffled_values = list(quiz_data.values())
-                random.shuffle(shuffled_values)
-                question_key = f"Q{randomizer}" # Ex. Q1, Q2, Q3, etc.
-                choices_key = f"Choices{question_key[-1]}" # Ex. Choices1, Choices2, Choices3, etc.
-
-                if question_key in value:
-                    print(f"Question: {value[question_key]}")
-
-                    ascii_num = 65  # ASCII value for 'A'
-                    for choice_value in value[choices_key].items():
-                        print(f"    {chr(ascii_num)}. {choice_value[1]}")
-                        ascii_num += 1
-
-                    # let the user answer the questions
-                    player_answer = input("Answer (A/B/C/D): ")
-                    
-                    converted_answer = 0
-                    ascii_num = 65
-                    for num, (choices_key, choice_value) in enumerate(value[choices_key].items()):
-                        if ord(player_answer.upper()) == ascii_num:
-                            converted_answer = choice_value
-                            ascii_num = 65
-                            break
-                        
-                        else:
-                            ascii_num += 1
-
-                    # Check if the answer is correct
-                    if converted_answer == quiz_data[f"{key}"][f"Answer{randomizer}"]:
-                        print("Correct!")
-                        score += 1
-                        continue
-
-                    else:
-                        print("Wrong!")
-                        print(f"The correct answer is: {quiz_data[f'{key}'][f'Answer{randomizer}']}")
-                        continue
+        print(question)
 
     # count the score
     total_score = score / total_questions * 100
