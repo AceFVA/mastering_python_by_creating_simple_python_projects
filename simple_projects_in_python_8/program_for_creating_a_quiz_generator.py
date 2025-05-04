@@ -8,7 +8,6 @@ import time
 
 from rich.console import Console
 from rich.table import Table
-from rich import print
 
 console = Console()
 
@@ -20,9 +19,9 @@ with open('quiz_questionnaires.json', 'r') as file:
 # create a menu for the quiz
 def display_menu():
     console.rule("Welcome to the [bold blue]Quiz of Wits![/bold blue]")
-    print("1. Start Quiz")
-    print("2. View Leaderboard")
-    print("3. Exit")
+    console.print("[blue]1.[/blue] Start Quiz")
+    console.print("[blue]2.[/blue] View Leaderboard")
+    console.print("[blue]3.[/blue] Exit")
 
     # ask the user to select an option
     try:
@@ -30,34 +29,34 @@ def display_menu():
         
         if selected_option == 1:
             # Start Quiz
-            print("\n[yellow]Starting the quiz...[/yellow]")
             start_quiz()
         elif selected_option == 2:
             # View Leaderboard
-            print("\n[yellow]Displaying the leaderboard...[/yellow]")
+            console.print("\n[yellow]Displaying the leaderboard...[/yellow]")
         elif selected_option == 3:
             # Exit
-            print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+            console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
         else:
-            print("\n[red]Invalid option.[/red] Please try again.")
+            console.print("\n[red]Invalid option.[/red] Please try again.")
             display_menu()
 
     except KeyboardInterrupt:
-        print("\n[red]Input interrupted by the user.[/red]")
-        print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+        console.print("\n[red]Input interrupted by the user.[/red]")
+        console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
 
     except ValueError:
-        print("\n[red]Invalid input.[/red] Please enter a number between 1 and 3.")
+        console.print("\n[red]Invalid input.[/red] Please enter a number between 1 and 3.")
         display_menu()
 
 def start_quiz():
     # ask the user to input their name for saving scores
     player_name = input("\nPlease enter your name: ")
-    print(f"\nHello, {player_name}! Let's start the quiz.")
+    console.print(f"\nHello, [green]{player_name}[/green]! Let's start the quiz.")
+    console.print("[yellow]Starting the quiz...[/yellow]")
     time.sleep(3)
-    print("\nYou will have 10 seconds to answer each question.")
+    console.print("\nYou will have [red]10[/red] seconds to answer each question.")
     time.sleep(3)
-    print("\nYou will lose points for each second you take to answer.")
+    console.print("\nYou will [bold red]lose[/bold red] points for each second you take to answer.")
     time.sleep(3)
     print("\nLet's begin!")
     time.sleep(2)
@@ -80,13 +79,13 @@ def start_quiz():
         question = quiz_data[value][f"Q{question_num}"] # Gets the question itself
         question_ans = quiz_data[value][f"Answer{question_num}"] # Gets the correct answer for that question
 
-        print(f"\n{question}")
+        console.print(f"\n[blue]{question}[/blue]")
         time_start = time.time() # Start time for the question
 
         # show the choices for the question
         ascii_value = 65 # ASCII value of 'A'
         for choice_key, choice_value in quiz_data[value][f"Choices{question_num}"].items():
-            print(f"    {chr(ascii_value)}. {choice_value}")
+            console.print(f"    [yellow]{chr(ascii_value)}.[/yellow] {choice_value}")
             ascii_value += 1
 
         player_ans = input("\nPlease select your answer (A, B, C, D): ").upper()
@@ -112,21 +111,21 @@ def start_quiz():
 
         if player_ans == question_ans:
             # if the answer is correct, add 1 to the score
-            print(f"Correct! +{question_score} points")
+            console.print(f"[green]Correct![/green] [cyan]+{question_score}[/cyan] points")
             final_score += question_score
             
         else:
-            print(f"Incorrect! The correct answer is: {question_ans}")
+            console.print(f"[red]Incorrect![/red] The correct answer is: [green]{question_ans}[/green]")
 
-        print(f"\nScore: {final_score}")
+        console.print(f"\nScore: [cyan]{final_score}[/cyan]")
         
         answered_questions += 1
         if answered_questions == total_questions:
-            print("\nQuiz completed!")
-            print(f"Your final score: {final_score}")
+            console.print("\n[bold blue]Quiz completed![/bold blue]")
+            console.print(f"[yellow]Your final score:[/yellow] {final_score}")
             break
 
-        print("\nNext question...")
+        console.print("\n[yellow]Next question...[/yellow]")
         time.sleep(3)
 
 display_menu()
