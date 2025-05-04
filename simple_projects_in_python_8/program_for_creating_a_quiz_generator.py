@@ -138,10 +138,18 @@ def start_quiz():
                     leaderboard_file.write("\n")
 
                 console.print("\n[green]Score saved![/green]")
+                
             else:
                 console.print("\n[yellow]Score not saved.[/yellow]")
-            
-            break
+
+            player_exit = input("\nDo you want to exit the quiz? (Y/N): ").upper()
+            if player_exit == "Y":
+                console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+                break
+
+            else:
+                console.print("\n[yellow]Returning to the main menu...[/yellow]")
+                display_menu()
 
         console.print("\n[yellow]Next question...[/yellow]")
         time.sleep(3)
