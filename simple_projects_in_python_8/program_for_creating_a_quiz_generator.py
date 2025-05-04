@@ -61,10 +61,17 @@ def start_quiz():
     random.shuffle(question_key)  # Shuffle the questions for randomness
 
     for value in question_key:
-        question_num = f"{value.split()[-1]}"
-        question = quiz_data[value][f"Q{question_num}"]
+        question_num = f"{value.split()[-1]}" # Gets the number of the question (1, 2, 3, etc.)
+        question = quiz_data[value][f"Q{question_num}"] # Gets the question itself
+        question_ans = quiz_data[value][f"Answer{question_num}"] # Gets the correct answer for that question
 
         print(question)
+
+        # show the choices for the question
+        ascii_value = 65 # ASCII value of 'A'
+        for choice_key, choice_value in quiz_data[value][f"Choices{question_num}"].items():
+            print(f"{chr(ascii_value)}: {choice_value}")
+            ascii_value += 1
 
     # count the score
     total_score = score / total_questions * 100
