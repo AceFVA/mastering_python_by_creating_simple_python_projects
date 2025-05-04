@@ -5,6 +5,7 @@ import json
 import random
 import rich
 import time
+import os
 
 from rich.console import Console
 from rich.table import Table
@@ -12,9 +13,18 @@ from rich.table import Table
 console = Console()
 
 # open the file created in Quiz Creator program in read mode
-with open('quiz_questionnaires.json', 'r') as file:
-    # load the quiz questions and answers from the file
-    quiz_data = json.load(file) 
+if os.path.exists('quiz_questionnaires.json'):
+    with open('quiz_questionnaires.json', 'r') as file:
+        try:
+        # load the quiz questions and answers from the file
+            quiz_data = json.load(file) 
+
+        except json.JSONDecodeError:
+            console.print("[red]Error loading quiz data. Please check the file format.[/red]")
+            exit(1)
+else:
+    console.print("[red]Quiz data file not found. Please create a quiz first.[/red]")
+    exit(1)
 
 # create a menu for the quiz
 def display_menu():
@@ -127,18 +137,23 @@ def start_quiz():
             player_decision = input("\nDo you want to save your score? (Y/N): ").upper()
             if player_decision == "Y":
                 # save the score to a file for the leaderboard
-                with open("leaderboard.json", "a") as leaderboard_file:
-                    # create a dictionary to store the player's name and score
-                    leaderboard_entry = {
-                        "name": player_name,
-                        "score": int(final_score)
-                    }
-                    # write the entry to the file
-                    json.dump(leaderboard_entry, leaderboard_file, indent = 4)
-                    leaderboard_file.write("\n")
+                if os.path.exists('leaderboard.json'):
+                    with open('leaderboard.json', 'r') as file:
+                        try:
+                            leaderboard_data = json.load(file)
+
+                        except json.JSONDecodeError:
+                            console.print("[red]Error loading leaderboard data. Please check the file format.[/red]")
+                            continue
+                else:
+                    leaderboard_data = {}
+
+                leaderboard_data[player_name] = int(final_score)
+                with open('leaderboard.json', 'w') as file:
+                    json.dump(leaderboard_data, file, indent = 4)
 
                 console.print("\n[green]Score saved![/green]")
-                
+
             else:
                 console.print("\n[yellow]Score not saved.[/yellow]")
 
