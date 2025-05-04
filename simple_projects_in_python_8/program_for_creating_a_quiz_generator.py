@@ -40,12 +40,18 @@ def display_menu():
         if selected_option == 1:
             # Start Quiz
             start_quiz()
+
         elif selected_option == 2:
             # View Leaderboard
-            console.print("\n[yellow]Displaying the leaderboard...[/yellow]")
+            console.print("\n[yellow]Displaying the leaderboard...[/yellow]\n")
+            time.sleep(3)
+            leaderboard()
+
         elif selected_option == 3:
             # Exit
             console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+            exit()
+
         else:
             console.print("\n[red]Invalid option.[/red] Please try again.")
             display_menu()
@@ -115,6 +121,7 @@ def start_quiz():
         if question_score == 0:
             print("\nTime's up! You lose all points for this question.")
             question_score = 0
+            
         else:
             print("\nYou answer is...")
             time.sleep(3)
@@ -145,6 +152,7 @@ def start_quiz():
                         except json.JSONDecodeError:
                             console.print("[red]Error loading leaderboard data. Please check the file format.[/red]")
                             continue
+
                 else:
                     leaderboard_data = {}
 
@@ -168,5 +176,44 @@ def start_quiz():
 
         console.print("\n[yellow]Next question...[/yellow]")
         time.sleep(3)
+
+def leaderboard():
+    # load the leaderboard data from the file
+    if os.path.exists('leaderboard.json'):
+        with open('leaderboard.json', 'r') as file:
+            try:
+                leaderboard_data = json.load(file)
+
+            except json.JSONDecodeError:
+                console.print("[red]Error loading leaderboard data. Please check the file format.[/red]")
+                return
+            
+    else:
+        console.print("[red]Leaderboard data file not found.[/red]")
+        return
+
+    # create a table for the leaderboard
+    table = Table(title = "[bold yellow]Leaderboard[/bold yellow]", title_justify = "center", show_lines = True)
+    table.add_column("#", justify = "center", style = "blue")
+    table.add_column("Player Name", justify = "center", style = "magenta")
+    table.add_column("Score", justify = "center", style = "green")
+
+    # sort the leaderboard data by score in descending order
+    sorted_leaderboard = sorted(leaderboard_data.items(), key = lambda x: x[1], reverse = True)
+
+    # add the leaderboard data to the table
+    for rank, (player_name, score) in enumerate(sorted_leaderboard, start = 1):
+        table.add_row(str(rank), player_name, str(score))
+
+    console.print(table)
+
+    player_decision = input("\nDo you want to return to the main menu? (Y/N): ").upper()
+    if player_decision == "Y":
+        console.print("\n[yellow]Returning to the main menu...[/yellow]")
+        display_menu()
+
+    else:
+        console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+        exit()
 
 display_menu()
