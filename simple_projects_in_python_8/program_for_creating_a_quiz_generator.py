@@ -37,17 +37,17 @@ def display_menu():
             print("[yellow]Displaying the leaderboard...[/yellow]")
         elif selected_option == 3:
             # Exit
-            console.print("[yellow]Exiting the quiz... Goodbye![/yellow]")
+            print("[yellow]Exiting the quiz... Goodbye![/yellow]")
         else:
             print("[red]Invalid option.[/red] Please try again.")
             display_menu()
 
     except KeyboardInterrupt:
-        console.print("[red]Input interrupted by the user.[/red]")
-        console.print("[yellow]Exiting the quiz... Goodbye![/yellow]")
+        print("[red]Input interrupted by the user.[/red]")
+        print("[yellow]Exiting the quiz... Goodbye![/yellow]")
 
     except ValueError:
-        console.print("[red]Invalid input.[/red] Please enter a number between 1 and 3.")
+        print("[red]Invalid input.[/red] Please enter a number between 1 and 3.")
         display_menu()
 
 def start_quiz():
@@ -72,6 +72,21 @@ def start_quiz():
         for choice_key, choice_value in quiz_data[value][f"Choices{question_num}"].items():
             print(f"{chr(ascii_value)}: {choice_value}")
             ascii_value += 1
+
+        player_ans = input("Please select your answer (A, B, C, D): ").upper()
+        for choice_key, choice_value in quiz_data[value][f"Choices{question_num}"].items():
+            choice_num = choice_key.split()[-1] # Gets the number of the choice (1, 2, 3, etc.)
+            ascii_value = 65
+            choice_key = chr(ascii_value + int(choice_num) - 1)
+            if player_ans == choice_key:
+                player_ans = choice_value
+                break
+        
+        if player_ans == question_ans:
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Incorrect! The correct answer is: {question_ans}")
 
     # count the score
     total_score = score / total_questions * 100
