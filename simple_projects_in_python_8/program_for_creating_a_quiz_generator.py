@@ -14,14 +14,24 @@ console = Console()
 
 # open the file created in Quiz Creator program in read mode
 if os.path.exists('quiz_questionnaires.json'):
-    with open('quiz_questionnaires.json', 'r') as file:
-        try:
-        # load the quiz questions and answers from the file
-            quiz_data = json.load(file) 
+    try:
+        with open('quiz_questionnaires.json', 'r') as file:
+            try:
+            # load the quiz questions and answers from the file
+                quiz_data = json.load(file) 
 
-        except json.JSONDecodeError:
-            console.print("[red]Error loading quiz data. Please check the file format.[/red]")
-            exit(1)
+            except json.JSONDecodeError:
+                console.print("[red]Error loading quiz data. Please check the file format.[/red]")
+                exit(1)
+    
+    except IOError:
+        console.print("[red]Error opening quiz data file.[/red]")
+        exit(1)
+
+    except OSError:
+        console.print("[red]Error accessing quiz data file.[/red]")
+        exit(1)
+
 else:
     console.print("[red]Quiz data file not found. Please create a quiz first.[/red]")
     exit(1)
@@ -68,7 +78,15 @@ def display_menu():
 
 def start_quiz():
     # ask the user to input their name for saving scores
-    player_name = input("\nPlease enter your name: ")
+    try:
+        player_name = input("\nPlease enter your name: ").strip()
+    
+    except KeyboardInterrupt:
+        console.print("\n[red]Input interrupted by the user.[/red]")
+        console.print("[yellow]Returning to the main menu...[/yellow]")
+        time.sleep(1)
+        display_menu()
+
     console.print(f"\nHello, [blue]{player_name}[/blue]! Let's start the quiz.")
     console.print("[yellow]Starting the quiz...[/yellow]")
     time.sleep(3)
@@ -186,13 +204,22 @@ def start_quiz():
 def leaderboard():
     # load the leaderboard data from the file
     if os.path.exists('leaderboard.json'):
-        with open('leaderboard.json', 'r') as file:
-            try:
-                leaderboard_data = json.load(file)
+        try:
+            with open('leaderboard.json', 'r') as file:
+                try:
+                    leaderboard_data = json.load(file)
 
-            except json.JSONDecodeError:
-                console.print("[red]Error loading leaderboard data. Please check the file format.[/red]")
-                return
+                except json.JSONDecodeError:
+                    console.print("[red]Error loading leaderboard data. Please check the file format.[/red]")
+                    return
+        
+        except IOError:
+            console.print("[red]Error opening leaderboard data file.[/red]")
+            return
+        
+        except OSError:
+            console.print("[red]Error accessing leaderboard data file.[/red]")
+            return
             
     else:
         console.print("[red]Leaderboard data file not found.[/red]")
@@ -212,14 +239,21 @@ def leaderboard():
         table.add_row(str(rank), player_name, str(score))
 
     console.print(table)
+    
+    try:
+        player_decision = input("\nDo you want to return to the main menu? (Y/N): ").upper()
+        if player_decision == "Y":
+            console.print("\n[yellow]Returning to the main menu...[/yellow]")
+            display_menu()
 
-    player_decision = input("\nDo you want to return to the main menu? (Y/N): ").upper()
-    if player_decision == "Y":
-        console.print("\n[yellow]Returning to the main menu...[/yellow]")
+        else:
+            console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+            exit()
+
+    except KeyboardInterrupt:
+        console.print("\n[red]Input interrupted by the user.[/red]")
+        console.print("\n[yellow]Returning to menu...[/yellow]")
+        time.sleep(1)
         display_menu()
-
-    else:
-        console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
-        exit()
 
 display_menu()
