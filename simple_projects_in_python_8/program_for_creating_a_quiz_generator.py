@@ -51,24 +51,24 @@ def display_menu():
 def start_quiz():
     # ask the user to input their name for saving scores
     player_name = input("\nPlease enter your name: ")
-    console.print(f"\nHello, [green]{player_name}[/green]! Let's start the quiz.")
+    console.print(f"\nHello, [blue]{player_name}[/blue]! Let's start the quiz.")
     console.print("[yellow]Starting the quiz...[/yellow]")
     time.sleep(3)
-    console.print("\nYou will have [red]10[/red] seconds to answer each question.")
+    console.print("\nYou need to answer the questions as quickly as possible.")
     time.sleep(3)
-    console.print("\nYou will [bold red]lose[/bold red] points for each second you take to answer.")
+    console.print("\nYou will [bold red]lose[/bold red] points for each second you take to answer (1000 points per question).")
     time.sleep(3)
     print("\nLet's begin!")
     time.sleep(2)
-    print("Ready...")
+    console.print("\n[yellow]Ready...[/yellow]")
     time.sleep(2)
-    print("Set...")
+    console.print("[yellow]Set...[/yellow]")
     time.sleep(2)
-    print("Start!")
+    console.print("[yellow]Start![/yellow]")
     time.sleep(1)
 
     final_score = 0
-    base_score = 10
+    base_score = 1000
     answered_questions = 0
     total_questions = len(quiz_data)
     question_key = list(quiz_data.keys())
@@ -99,8 +99,8 @@ def start_quiz():
         
         time_end = time.time()
         time_taken = time_end - time_start
-        penalty = int(time_taken) // 2
-        question_score = max(0, base_score - penalty) 
+        penalty = 50 # lose points per second
+        question_score = max(300, int(base_score - (time_taken * penalty)))
 
         if question_score == 0:
             print("\nTime's up! You lose all points for this question.")
@@ -109,20 +109,20 @@ def start_quiz():
             print("\nYou answer is...")
             time.sleep(3)
 
-        if player_ans == question_ans:
-            # if the answer is correct, add 1 to the score
-            console.print(f"[green]Correct![/green] [cyan]+{question_score}[/cyan] points")
-            final_score += question_score
-            
-        else:
-            console.print(f"[red]Incorrect![/red] The correct answer is: [green]{question_ans}[/green]")
+            if player_ans == question_ans:
+                # if the answer is correct, add 1 to the score
+                console.print(f"[green]Correct![/green] [cyan]+{int(question_score)}[/cyan] points")
+                final_score += question_score
+                
+            else:
+                console.print(f"[red]Incorrect![/red] The correct answer is: [green]{question_ans}[/green]")
 
-        console.print(f"\nScore: [cyan]{final_score}[/cyan]")
+        console.print(f"\nScore: [cyan]{int(final_score)}[/cyan]")
         
         answered_questions += 1
         if answered_questions == total_questions:
             console.print("\n[bold blue]Quiz completed![/bold blue]")
-            console.print(f"[yellow]Your final score:[/yellow] {final_score}")
+            console.print(f"[yellow]Your final score:[/yellow] {int(final_score)}")
             break
 
         console.print("\n[yellow]Next question...[/yellow]")
