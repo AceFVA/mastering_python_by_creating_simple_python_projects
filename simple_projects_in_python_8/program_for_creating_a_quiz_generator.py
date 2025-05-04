@@ -49,7 +49,9 @@ def display_menu():
 
         elif selected_option == 3:
             # Exit
-            console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+            console.print("\n[yellow]Exiting the quiz...[/yellow]")
+            time.sleep(1)
+            console.print("\n[yellow]Goodbye![/yellow]")
             exit()
 
         else:
@@ -101,10 +103,15 @@ def start_quiz():
         # show the choices for the question
         ascii_value = 65 # ASCII value of 'A'
         for choice_key, choice_value in quiz_data[value][f"Choices{question_num}"].items():
-            console.print(f"    [yellow]{chr(ascii_value)}.[/yellow] {choice_value}")
+            console.print(f"    [green]{chr(ascii_value)}.[/green] {choice_value}")
             ascii_value += 1
 
-        player_ans = input("\nPlease select your answer (A, B, C, D): ").upper()
+        player_ans = input("\nPlease select your answer [A | B | C | D]: ").upper()
+
+        while player_ans not in ['A', 'B', 'C', 'D']:
+            console.print("[red]Invalid choice.[/red] Please select a valid option.")
+            player_ans = input("\nPlease select your answer [A | B | C | D]: ").upper()
+
         for choice_key, choice_value in quiz_data[value][f"Choices{question_num}"].items():
             choice_num = choice_key.split()[-1] # Gets the number of the choice (1, 2, 3, etc.)
             ascii_value = 65
@@ -121,13 +128,12 @@ def start_quiz():
         if question_score == 0:
             print("\nTime's up! You lose all points for this question.")
             question_score = 0
-            
+
         else:
             print("\nYou answer is...")
             time.sleep(3)
 
             if player_ans == question_ans:
-                # if the answer is correct, add 1 to the score
                 console.print(f"[green]Correct![/green] [cyan]+{int(question_score)}[/cyan] points")
                 final_score += question_score
                 
