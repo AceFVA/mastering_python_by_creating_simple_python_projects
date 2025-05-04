@@ -4,6 +4,7 @@
 import json
 import random
 import rich
+import time
 
 from rich.console import Console
 from rich.table import Table
@@ -18,44 +19,58 @@ with open('quiz_questionnaires.json', 'r') as file:
 
 # create a menu for the quiz
 def display_menu():
-    console.rule("[bold blue]Welcome to the Quiz of Wits![/bold blue]")
-    print("Please select an option:")
+    console.rule("Welcome to the [bold blue]Quiz of Wits![/bold blue]")
     print("1. Start Quiz")
     print("2. View Leaderboard")
     print("3. Exit")
 
     # ask the user to select an option
     try:
-        selected_option = int(input("Please select an option (1-3): "))
+        selected_option = int(input("\nPlease select an option (1-3): "))
         
         if selected_option == 1:
             # Start Quiz
-            print("[yellow]Starting the quiz...[/yellow]")
+            print("\n[yellow]Starting the quiz...[/yellow]")
             start_quiz()
         elif selected_option == 2:
             # View Leaderboard
-            print("[yellow]Displaying the leaderboard...[/yellow]")
+            print("\n[yellow]Displaying the leaderboard...[/yellow]")
         elif selected_option == 3:
             # Exit
-            print("[yellow]Exiting the quiz... Goodbye![/yellow]")
+            print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
         else:
-            print("[red]Invalid option.[/red] Please try again.")
+            print("\n[red]Invalid option.[/red] Please try again.")
             display_menu()
 
     except KeyboardInterrupt:
-        print("[red]Input interrupted by the user.[/red]")
-        print("[yellow]Exiting the quiz... Goodbye![/yellow]")
+        print("\n[red]Input interrupted by the user.[/red]")
+        print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
 
     except ValueError:
-        print("[red]Invalid input.[/red] Please enter a number between 1 and 3.")
+        print("\n[red]Invalid input.[/red] Please enter a number between 1 and 3.")
         display_menu()
 
 def start_quiz():
     # ask the user to input their name for saving scores
-    player_name = input("Please enter your name: ")
-    print(f"Hello, {player_name}! Let's start the quiz.")
+    player_name = input("\nPlease enter your name: ")
+    print(f"\nHello, {player_name}! Let's start the quiz.")
+    time.sleep(3)
+    print("\nYou will have 10 seconds to answer each question.")
+    time.sleep(3)
+    print("\nYou will lose points for each second you take to answer.")
+    time.sleep(3)
+    print("\nLet's begin!")
+    time.sleep(2)
+    print("Ready...")
+    time.sleep(2)
+    print("Set...")
+    time.sleep(2)
+    print("Start!")
+    time.sleep(1)
 
-    score = 0
+    final_score = 0
+    base_score = 10
+    answered_questions = 0
     total_questions = len(quiz_data)
     question_key = list(quiz_data.keys())
     random.shuffle(question_key)  # Shuffle the questions for randomness
@@ -65,15 +80,16 @@ def start_quiz():
         question = quiz_data[value][f"Q{question_num}"] # Gets the question itself
         question_ans = quiz_data[value][f"Answer{question_num}"] # Gets the correct answer for that question
 
-        print(question)
+        print(f"\n{question}")
+        time_start = time.time() # Start time for the question
 
         # show the choices for the question
         ascii_value = 65 # ASCII value of 'A'
         for choice_key, choice_value in quiz_data[value][f"Choices{question_num}"].items():
-            print(f"{chr(ascii_value)}: {choice_value}")
+            print(f"    {chr(ascii_value)}. {choice_value}")
             ascii_value += 1
 
-        player_ans = input("Please select your answer (A, B, C, D): ").upper()
+        player_ans = input("\nPlease select your answer (A, B, C, D): ").upper()
         for choice_key, choice_value in quiz_data[value][f"Choices{question_num}"].items():
             choice_num = choice_key.split()[-1] # Gets the number of the choice (1, 2, 3, etc.)
             ascii_value = 65
@@ -82,15 +98,36 @@ def start_quiz():
                 player_ans = choice_value
                 break
         
+        time_end = time.time()
+        time_taken = time_end - time_start
+        penalty = int(time_taken) // 2
+        question_score = max(0, base_score - penalty) 
+
+        if question_score == 0:
+            print("\nTime's up! You lose all points for this question.")
+            question_score = 0
+        else:
+            print("\nYou answer is...")
+            time.sleep(3)
+
         if player_ans == question_ans:
-            print("Correct!")
-            score += 1
+            # if the answer is correct, add 1 to the score
+            print(f"Correct! +{question_score} points")
+            final_score += question_score
+            
         else:
             print(f"Incorrect! The correct answer is: {question_ans}")
 
-    # count the score
-    total_score = score / total_questions * 100
-    print(f"Your score: {score}/{total_questions} ({total_score:.2f}%)")
+        print(f"\nScore: {final_score}")
+        
+        answered_questions += 1
+        if answered_questions == total_questions:
+            print("\nQuiz completed!")
+            print(f"Your final score: {final_score}")
+            break
+
+        print("\nNext question...")
+        time.sleep(3)
 
 display_menu()
 
