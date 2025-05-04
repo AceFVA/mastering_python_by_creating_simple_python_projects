@@ -70,8 +70,11 @@ def display_menu():
 
     except KeyboardInterrupt:
         console.print("\n[red]Input interrupted by the user.[/red]")
-        console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
-
+        console.print("\n[yellow]Exiting the quiz...[/yellow]")
+        time.sleep(1)
+        console.print("\n[yellow]Goodbye![/yellow]")
+        exit()
+        
     except ValueError:
         console.print("\n[red]Invalid input.[/red] Please enter a number between 1 and 3.")
         display_menu()
