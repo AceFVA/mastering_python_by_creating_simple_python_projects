@@ -123,11 +123,27 @@ def start_quiz():
         if answered_questions == total_questions:
             console.print("\n[bold blue]Quiz completed![/bold blue]")
             console.print(f"[yellow]Your final score:[/yellow] {int(final_score)}")
+
+            player_decision = input("\nDo you want to save your score? (Y/N): ").upper()
+            if player_decision == "Y":
+                # save the score to a file for the leaderboard
+                with open("leaderboard.json", "a") as leaderboard_file:
+                    # create a dictionary to store the player's name and score
+                    leaderboard_entry = {
+                        "name": player_name,
+                        "score": int(final_score)
+                    }
+                    # write the entry to the file
+                    json.dump(leaderboard_entry, leaderboard_file, indent = 4)
+                    leaderboard_file.write("\n")
+
+                console.print("\n[green]Score saved![/green]")
+            else:
+                console.print("\n[yellow]Score not saved.[/yellow]")
+            
             break
 
         console.print("\n[yellow]Next question...[/yellow]")
         time.sleep(3)
 
 display_menu()
-
-# save the score to a file for the leaderboard
