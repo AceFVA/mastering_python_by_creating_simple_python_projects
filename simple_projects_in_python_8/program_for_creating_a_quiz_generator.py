@@ -13,9 +13,9 @@ from rich.table import Table
 console = Console()
 
 # open the file created in Quiz Creator program in read mode
-if os.path.exists('quiz_questionnaires.json'):
+if os.path.exists("quiz_questionnaires.json"):
     try:
-        with open('quiz_questionnaires.json', 'r') as file:
+        with open("quiz_questionnaires.json", "r") as file:
             try:
             # load the quiz questions and answers from the file
                 quiz_data = json.load(file) 
@@ -129,7 +129,7 @@ def start_quiz():
 
         player_ans = input("\nPlease select your answer [A | B | C | D]: ").upper()
 
-        while player_ans not in ['A', 'B', 'C', 'D']:
+        while player_ans not in ["A", "B", "C", "D"]:
             console.print("[red]Invalid choice.[/red] Please select a valid option.")
             player_ans = input("\nPlease select your answer [A | B | C | D]: ").upper()
 
@@ -171,8 +171,8 @@ def start_quiz():
             player_decision = input("\nDo you want to save your score? (Y/N): ").upper()
             if player_decision == "Y":
                 # save the score to a file for the leaderboard
-                if os.path.exists('leaderboard.json'):
-                    with open('leaderboard.json', 'r') as file:
+                if os.path.exists("leaderboard.json"):
+                    with open("leaderboard.json", "r") as file:
                         try:
                             leaderboard_data = json.load(file)
 
@@ -184,7 +184,7 @@ def start_quiz():
                     leaderboard_data = {}
 
                 leaderboard_data[player_name] = int(final_score)
-                with open('leaderboard.json', 'w') as file:
+                with open("leaderboard.json", "w") as file:
                     json.dump(leaderboard_data, file, indent = 4)
 
                 console.print("\n[green]Score saved![/green]")
@@ -206,9 +206,9 @@ def start_quiz():
 
 def leaderboard():
     # load the leaderboard data from the file
-    if os.path.exists('leaderboard.json'):
+    if os.path.exists("leaderboard.json"):
         try:
-            with open('leaderboard.json', 'r') as file:
+            with open("leaderboard.json", "r") as file:
                 try:
                     leaderboard_data = json.load(file)
 
