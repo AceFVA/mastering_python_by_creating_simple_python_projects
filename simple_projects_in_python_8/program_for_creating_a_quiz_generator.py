@@ -230,7 +230,7 @@ def leaderboard():
 
     # create a table for the leaderboard
     table = Table(title = "[bold yellow]Leaderboard[/bold yellow]", title_justify = "center", show_lines = True)
-    table.add_column("#", justify = "center", style = "blue")
+    table.add_column("Rank", justify = "center", style = "blue")
     table.add_column("Player Name", justify = "center", style = "magenta")
     table.add_column("Score", justify = "center", style = "green")
 
