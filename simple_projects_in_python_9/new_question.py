@@ -12,7 +12,7 @@ class NewQuestion:
 
     # Create four possible answers
     def choice(self):
-        print("What are the new four possible answers?: ")
+        print("What are the four possible answers?: ")
         choice = {}
         for i in range(1, 5):
             user_choices = input(f"Choice {i}: ")
@@ -21,5 +21,5 @@ class NewQuestion:
 
     # Create the correct answer
     def answer(self):
-        user_answer = input("What is the new correct answer?: ")
+        user_answer = input("What is the correct answer?: ")
         self.answers = user_answer
