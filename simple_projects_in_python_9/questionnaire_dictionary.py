@@ -8,8 +8,14 @@ class QuestionDictionary:
         self.user_q_choices = user_q_choices
         self.user_q_answer = user_q_answer
 
+    def add_question_to_dict(self):
         # Add the question to the main questionnaire dictionary
-        self.main_questionnaire_dict[f"Question {self.question_num}"] = self.user_question
-        self.main_questionnaire_dict[f"Question {self.question_num}"][f"Q{self.question_num}"] = self.user_question
-        self.main_questionnaire_dict[f"Question {self.question_num}"][f"Choices{self.question_num}"] = self.user_q_choices
-        self.main_questionnaire_dict[f"Question {self.question_num}"][f"Answer{self.question_num}"] = self.user_q_answer
+        self.main_questionnaire_dict[f"Question {self.question_num}"] = {
+            "Question": self.user_question,
+            "Choices": self.user_q_choices,
+            "Answer": self.user_q_answer
+        }
+
+        self.question_num += 1
+
+        return self.main_questionnaire_dict
