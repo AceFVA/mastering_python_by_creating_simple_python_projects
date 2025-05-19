@@ -5,7 +5,10 @@ from new_question import NewQuestion
 
 # main class
 class QuizCreator(NewQuestion):
-    def main_menu():
+    def __init__(self):
+        super().__init__()
+
+    def main_menu(self):
         welcome_msg = "Welcome to Quiz Creator!"
         print(welcome_msg.center(48))
         print("\nHow this works?")
@@ -15,11 +18,16 @@ class QuizCreator(NewQuestion):
         print("4. Enter and wait for the confirmation that the program is finish.\n")
         print("Let's Start!\n")
 
-        main_questionnaire_dict = {}
-        question_num = 1
+    def asking_questions(self):
+        while True:
+            # ask the user to input the question
+            user_question = self.question()
 
-# ask the user to input the question
-# ask the user to input the four possible answers
-# ask the user to input the correct answer
+            # ask the user to input the four possible answers
+            user_q_choices = self.choice()
+
+            # ask the user to input the correct answer
+            user_q_answer = self.answer()
+
 # save the question, answers and choices in a dictionary
 # save the dictionary in a file
