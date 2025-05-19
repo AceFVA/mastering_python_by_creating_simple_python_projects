@@ -7,8 +7,8 @@ class NewQuestion:
 
     # Create a new question
     def question(self):
-        user_question = input("What is your question?: ")
-        self.questions = user_question
+        self.user_question = input("What is your question?: ")
+        return self.user_question
 
     # Create four possible answers
     def choice(self):
@@ -17,9 +17,11 @@ class NewQuestion:
         for i in range(1, 5):
             user_choices = input(f"Choice {i}: ")
             choice[f"Choice {i}"] = user_choices
-        self.choices = user_choices
+
+        self.choices = choice
+        return self.choices
 
     # Create the correct answer
     def answer(self):
-        user_answer = input("What is the correct answer?: ")
-        self.answers = user_answer
+        self.answer = input("What is the correct answer?: ")
+        return self.answer
