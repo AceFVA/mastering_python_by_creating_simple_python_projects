@@ -1,30 +1,39 @@
 from new_question import NewQuestion
 from view_question import ViewQuestion
+from save_question import SaveQuestion
 
-class EditQuestion(NewQuestion, ViewQuestion):
+class EditQuestion(NewQuestion, ViewQuestion, SaveQuestion):
     def __init__(self):
         super().__init__()
 
-    def change_question(self):
-        self.view_question()
+def change_question(self):
+    self.file_name = input("Enter the quiz file name to edit (without .json): ")
+    loader = SaveQuestion(self.file_name)
+    self.main_questionnaire_dict = loader.load_questions()
 
-        changing_question = input("Which question do you want to edit? (e.g. Question 1): ")
+    self.view_question()
 
-        if changing_question.strip().capitalize() in self.main_questionnaire_dict:
-            # ask the user new question, choices, and answer
-            user_new_question = self.question()
-            user_new_q_choices = self.choice()
-            user_new_q_answer = self.answer()
+    changing_question = input("Which question do you want to edit? (e.g. Question 1): ")
 
-            # change the current question being changed with the latest one
-            self.main_questionnaire_dict[f"Question {changing_question.split()[-1]}"]["Question"] = user_new_question
-            self.main_questionnaire_dict[f"Question {changing_question.split()[-1]}"]["Choices"] = user_new_q_choices
-            self.main_questionnaire_dict[f"Question {changing_question.split()[-1]}"]["Answer"] = user_new_q_answer
+    if changing_question.strip().capitalize() in self.main_questionnaire_dict:
+        # ask the user new question, choices, and answer
+        user_new_question = self.question()
+        user_new_q_choices = self.choice()
+        user_new_q_answer = self.answer()
 
-            print(f"{changing_question} has been changed successfully!")
+        self.main_questionnaire_dict[changing_question.strip().capitalize()] = {
+            "Question": user_new_question,
+            "Choices": user_new_q_choices,
+            "Answer": user_new_q_answer
+        }
 
-        else: 
-            print("Question does not exists.")
+        print(f"{changing_question} has been changed successfully!")
+
+        saver = SaveQuestion(self.file_name)
+        saver.saving_question(self.main_questionnaire_dict)
+
+    else:
+        print("Question does not exist.")
 
     def remove_question(self):
         self.view_question()
@@ -43,14 +52,17 @@ class EditQuestion(NewQuestion, ViewQuestion):
             for key, value in self.main_questionnaire_dict.items():
                 # create a new key with the adjusted question number
                 adjusted_main_dict[f"Question {new_question_num}"] = {
-                                        f"Q{new_question_num}": value[f"Q{key.split()[-1]}"],
-                                        f"Choices{new_question_num}": value[f"Choices{key.split()[-1]}"],
-                                        f"Answer{new_question_num}": value[f"Answer{key.split()[-1]}"]
+                                        f"Question": value["Question"],
+                                        f"Choices": value["Choices"],
+                                        f"Answer": value["Answer"]
                                         }
                 new_question_num += 1
 
             # update the main dictionary with the adjusted numbering
             self.main_questionnaire_dict = adjusted_main_dict
+
+            saver = SaveQuestion(self.file_name)
+            saver.saving_question(self.main_questionnaire_dict)
 
         else:
             print("Question does not exists.")
