@@ -10,6 +10,7 @@ class QuizCreator(UserInput):
 
     def main_menu(self):
         self.menu()
+        self.user_selecting_option()
 
     def asking_questions(self):
         while True:
@@ -25,15 +26,12 @@ class QuizCreator(UserInput):
             # add the question to the questionnaire dictionary
             self.add_question(user_ques, user_q_choices, user_q_answer)
             self.add_question_to_dict()
-        
-            # ask the user if they want to add another question
-            add_another_question = input("Do you want to add another question? (Y/N): ")
-            if add_another_question.strip().upper() == "N":
-                print("Thank you for using Quiz Creator!")
+
+            user_decision = self.user_adding_questions()
+            if user_decision == "break":
                 break
 
-            elif add_another_question.strip().upper() == "Y":
-                print("Let's add another question!\n")
+            elif user_decision == "continue":
                 continue
 
         return self.main_questionnaire_dict
