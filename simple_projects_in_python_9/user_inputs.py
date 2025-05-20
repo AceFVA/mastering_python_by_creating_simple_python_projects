@@ -35,14 +35,13 @@ class UserInput(EditQuestion):
             self.user_saving_questions()
 
         elif selected_option == 2:
-            self.change_question()
+                self.change_question()
 
         elif selected_option == 3:
-            self.remove_question()
+                self.remove_question()
 
         elif selected_option == 4:
-            pass
-            # self.view_question()
+                self.view_question()
 
         elif selected_option == 5:
             print("Thank you for using Quiz Creator!")
