@@ -2,6 +2,7 @@ import rich
 from rich.console import Console
 
 from edit_question import EditQuestion
+from save_question import SaveQuestion
 
 console = Console()
 
@@ -32,6 +33,7 @@ class UserInput(EditQuestion):
             print("Let's Start!\n")
 
             self.asking_questions()
+            self.user_saving_questions()
 
         elif selected_option == 2:
             self.change_question()
@@ -50,3 +52,18 @@ class UserInput(EditQuestion):
         elif add_another_question.strip().upper() == "Y":
             print("Let's add another question!\n")
             return "continue"
+        
+    def user_saving_questions(self):
+        user_decision = input("Do you want to save your questions? (Y/N): ")
+
+        if user_decision.strip().upper() == "Y":
+            file_name = input("Type any file name of you want: ")
+            saving_questions = SaveQuestion(f"{file_name}")
+            saving_questions.saving_question(self.main_questionnaire_dict)
+
+        elif user_decision.strip().upper() == "N":
+            print("Your questions were not saved.")
+
+        else:
+            print("Wrong input. Try again.")
+            self.user_saving_questions()
