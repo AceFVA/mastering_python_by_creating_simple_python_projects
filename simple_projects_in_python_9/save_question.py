@@ -7,25 +7,21 @@ class SaveQuestion():
 
     def saving_question(self, main_questionnaire_dict):
         try:
-            if os.path.exists(f"{self.file_name}"):
-                with open(self.file_name, "r") as file:
-                    try:
-                        quiz_data = json.load(file)
-
-                    except json.JSONDecodeError:
-                        quiz_data = []
-
-            else:
-                quiz_data = []
-
-            quiz_data.append(main_questionnaire_dict)
-
             with open(self.file_name, "w") as file:
-                json.dump(quiz_data, file, indent = 4)
+                json.dump(main_questionnaire_dict, file, indent=4)
                 print("Questions saved successfully!")
 
-        except OSError:
+        except (OSError, json.JSONDecodeError):
             print("Error saving your questions.")
 
-        except json.JSONDecodeError:
-            print("Error saving your questions.")
+    def loading_questions(self):
+        try:
+            if os.path.exists(self.file_name):
+                with open(self.file_name, "r") as file:
+                    return json.load(file)
+            else:
+                print("No saved quiz file found.")
+                return {}
+        except (OSError, json.JSONDecodeError):
+            print("Error loading quiz file.")
+            return {}
