@@ -40,7 +40,7 @@ class EditQuestion(NewQuestion, ViewQuestion):
             new_question_num = 1
 
             # iterate the items inside the main dictionary
-            for key, value in main_questionnaire_dict.items():
+            for key, value in self.main_questionnaire_dict.items():
                 # create a new key with the adjusted question number
                 adjusted_main_dict[f"Question {new_question_num}"] = {
                                         f"Q{new_question_num}": value[f"Q{key.split()[-1]}"],
@@ -50,7 +50,7 @@ class EditQuestion(NewQuestion, ViewQuestion):
                 new_question_num += 1
 
             # update the main dictionary with the adjusted numbering
-            main_questionnaire_dict = adjusted_main_dict
+            self.main_questionnaire_dict = adjusted_main_dict
 
         else:
             print("Question does not exists.")
