@@ -23,5 +23,5 @@ class NewQuestion:
 
     # Create the correct answer
     def answer(self):
-        self.answer = input("What is the correct answer?: ")
-        return self.answer
+        self.ques_answer = input("What is the correct answer?: ")
+        return self.ques_answer
