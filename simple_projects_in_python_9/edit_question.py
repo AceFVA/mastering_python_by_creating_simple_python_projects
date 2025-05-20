@@ -25,3 +25,16 @@ class EditQuestion(NewQuestion, ViewQuestion):
 
         else: 
             print("Question does not exists.")
+
+    def remove_question(self):
+        self.view_question()
+
+        removing_question = input("Which question do you want to remove? (e.g. Question 1): ")
+
+        if removing_question.strip().capitalize() in self.main_questionnaire_dict:
+            # remove the question, along with the choices and answer
+            self.main_questionnaire_dict.pop(removing_question)
+            print(f"{removing_question} has been removed successfully!")
+
+        else:
+            print("Question does not exists.")
