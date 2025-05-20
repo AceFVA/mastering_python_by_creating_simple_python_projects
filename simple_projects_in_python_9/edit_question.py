@@ -36,5 +36,21 @@ class EditQuestion(NewQuestion, ViewQuestion):
             self.main_questionnaire_dict.pop(removing_question)
             print(f"{removing_question} has been removed successfully!")
 
+            adjusted_main_dict = {}
+            new_question_num = 1
+
+            # iterate the items inside the main dictionary
+            for key, value in main_questionnaire_dict.items():
+                # create a new key with the adjusted question number
+                adjusted_main_dict[f"Question {new_question_num}"] = {
+                                        f"Q{new_question_num}": value[f"Q{key.split()[-1]}"],
+                                        f"Choices{new_question_num}": value[f"Choices{key.split()[-1]}"],
+                                        f"Answer{new_question_num}": value[f"Answer{key.split()[-1]}"]
+                                        }
+                new_question_num += 1
+
+            # update the main dictionary with the adjusted numbering
+            main_questionnaire_dict = adjusted_main_dict
+
         else:
             print("Question does not exists.")
