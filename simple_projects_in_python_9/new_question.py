@@ -1,6 +1,7 @@
 # Create a class for creating a new question
 class NewQuestion:
     def __init__(self, questions = None, choices = None, answers = None):
+        super().__init__()
         self.questions = questions
         self.choices = choices
         self.answers = answers

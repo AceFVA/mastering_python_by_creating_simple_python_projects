@@ -1,15 +1,13 @@
 import rich
 from rich.console import Console
 
-from new_question import NewQuestion
-from questionnaire_dictionary import QuestionDictionary
-from view_question import ViewQuestion
 from edit_question import EditQuestion
 
 console = Console()
 
-class UserInput(NewQuestion, QuestionDictionary, ViewQuestion, EditQuestion):
+class UserInput(EditQuestion):
     def __init__(self):
+        super().__init__()
         self.menu()
         self.user_selecting_option()
 

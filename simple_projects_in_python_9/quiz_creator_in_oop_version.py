@@ -39,14 +39,9 @@ class QuizCreator(UserInput):
 # FOR TESTING PURPOSES ONLY
 
 sample_quiz = QuizCreator()
-# create an instance of the class
 sample_quiz.main_menu()
-# create a new question
-sample_quiz.asking_questions()
 
 print("Your questionnaire dictionary is ready!")
-# print the questionnaire dictionary
 print(sample_quiz.main_questionnaire_dict)
 
-# save the question, answers and choices in a dictionary
 # save the dictionary in a file
