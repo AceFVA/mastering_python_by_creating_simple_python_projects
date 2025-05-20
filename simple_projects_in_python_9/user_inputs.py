@@ -2,7 +2,6 @@ import rich
 from rich.console import Console
 
 from edit_question import EditQuestion
-from save_question import SaveQuestion
 
 console = Console()
 
@@ -22,7 +21,7 @@ class UserInput(EditQuestion):
         console.print("5. Exit")
 
     def user_selecting_option(self):
-        selected_option = int(input("Please select an option (1 - 5):"))
+        selected_option = int(input("Please select an option (1 - 5): "))
 
         if selected_option == 1:
             print("\nHow this works?")
@@ -41,12 +40,22 @@ class UserInput(EditQuestion):
         elif selected_option == 3:
             self.remove_question()
 
+        elif selected_option == 4:
+            pass
+            # self.view_question()
+
+        elif selected_option == 5:
+            print("Thank you for using Quiz Creator!")
+            exit()
+
+        self.menu()
+        self.user_selecting_option()
+
     def user_adding_questions(self):
         # ask the user if they want to add another question
         add_another_question = input("Do you want to add another question? (Y/N): ")
 
         if add_another_question.strip().upper() == "N":
-            print("Thank you for using Quiz Creator!")
             return "break"
 
         elif add_another_question.strip().upper() == "Y":
@@ -57,9 +66,9 @@ class UserInput(EditQuestion):
         user_decision = input("Do you want to save your questions? (Y/N): ")
 
         if user_decision.strip().upper() == "Y":
-            file_name = input("Type any file name of you want: ")
-            saving_questions = SaveQuestion(f"{file_name}")
-            saving_questions.saving_question(self.main_questionnaire_dict)
+            self.file_name = input("Type any file name you want: ")
+            self.saving_question(self.main_questionnaire_dict)
+
 
         elif user_decision.strip().upper() == "N":
             print("Your questions were not saved.")
