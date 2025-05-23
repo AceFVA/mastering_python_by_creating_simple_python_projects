@@ -20,7 +20,7 @@ class NewQuestion:
         choice = {}
         for i in range(1, 5):
             user_choices = input(f"Choice {i}: ")
-            choice[f"Choice {i}"] = 
+            choice[f"Choice {i}"] = user_choices
             time.sleep(1)
 
         self.choices = choice
