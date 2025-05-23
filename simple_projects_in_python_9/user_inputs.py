@@ -2,6 +2,7 @@ import rich
 from rich.console import Console
 
 from edit_question import EditQuestion
+from save_question import SaveQuestion
 
 console = Console()
 
@@ -65,8 +66,10 @@ class UserInput(EditQuestion):
         user_decision = input("Do you want to save your questions? (Y/N): ")
 
         if user_decision.strip().upper() == "Y":
-            self.file_name = input("Type any file name you want: ")
-            self.saving_question(self.main_questionnaire_dict)
+            self.file_name = input("Type any file name you want: ").strip()
+
+            questions_saver = SaveQuestion(self.file_name)
+            questions_saver.saving_question(self.main_questionnaire_dict)
 
 
         elif user_decision.strip().upper() == "N":
