@@ -1,4 +1,6 @@
 import rich
+import time 
+
 from rich.console import Console
 
 from edit_question import EditQuestion
@@ -22,14 +24,19 @@ class UserInput(EditQuestion):
         console.print("5. Exit")
 
     def user_selecting_option(self):
-        selected_option = int(input("Please select an option (1 - 5): "))
+        selected_option = int(input("\nPlease select an option (1 - 5): "))
 
         if selected_option == 1:
             print("\nHow this works?")
+            time.sleep(1)
             print("1. Enter a question")
+            time.sleep(1)
             print("2. Input the four possible answers to the question.")
+            time.sleep(1)
             print("3. Type the correct answer")
+            time.sleep(1)
             print("4. Enter and wait for the confirmation that the program is finish.\n")
+            time.sleep(1)
             print("Let's Start!\n")
 
             self.asking_questions()
@@ -46,6 +53,7 @@ class UserInput(EditQuestion):
 
         elif selected_option == 5:
             print("Thank you for using Quiz Creator!")
+            time.sleep(1)
             exit()
 
         self.menu()
