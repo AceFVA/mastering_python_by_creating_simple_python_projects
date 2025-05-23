@@ -36,12 +36,5 @@ class QuizCreator(UserInput):
 
         return self.main_questionnaire_dict
 
-# FOR TESTING PURPOSES ONLY
-
 sample_quiz = QuizCreator()
 sample_quiz.main_menu()
-
-print("Your questionnaire dictionary is ready!")
-print(sample_quiz.main_questionnaire_dict)
-
-# save the dictionary in a file
