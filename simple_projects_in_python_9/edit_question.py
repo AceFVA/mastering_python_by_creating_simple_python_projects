@@ -1,3 +1,5 @@
+import time
+
 from new_question import NewQuestion
 from view_question import ViewQuestion
 from save_question import SaveQuestion
@@ -11,6 +13,8 @@ class EditQuestion(NewQuestion, ViewQuestion, SaveQuestion):
         loader = SaveQuestion(self.file_name)
         self.main_questionnaire_dict = loader.loading_questions()
 
+        print(f"Loaded questions from {self.file_name}.json:")
+        time.sleep(1)
         self.view_question()
 
         changing_question = input("Which question do you want to edit? (e.g. Question 1): ")
