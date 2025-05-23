@@ -28,6 +28,11 @@ class NewQuestion:
 
     # Create the correct answer
     def answer(self):
-        self.ques_answer = input("What is the correct answer?: ")
+        self.ques_answer = input("What is the correct answer? [ A | B | C | D ]: ").strip().upper()
+
+        if self.ques_answer not in ["A", "B", "C", "D"]:
+            print("Wrong input. Please type A, B, C or D only.")
+            return self.answer()
+        
         time.sleep(1)
         return self.ques_answer
