@@ -13,7 +13,7 @@ class EditQuestion(NewQuestion, ViewQuestion, SaveQuestion):
         super().__init__()
 
     def change_question(self):
-        self.file_name = console.input("[green]Enter the quiz file name to edit (without .json): [/green]").strip()
+        self.file_name = console.input("\n[green]Enter the quiz file name to edit (without .json): [/green]").strip()
         loader = SaveQuestion(self.file_name)
         self.main_questionnaire_dict = loader.loading_questions()
 
@@ -21,7 +21,7 @@ class EditQuestion(NewQuestion, ViewQuestion, SaveQuestion):
         time.sleep(1)
         self.view_question()
 
-        changing_question = console.input("[green]Which question do you want to edit? (e.g. Question 1):[/green] ").strip()
+        changing_question = console.input("\n[green]Which question do you want to edit? (e.g. Question 1):[/green] ").strip()
 
         if changing_question.strip().capitalize() in self.main_questionnaire_dict:
             # ask the user new question, choices, and answer
