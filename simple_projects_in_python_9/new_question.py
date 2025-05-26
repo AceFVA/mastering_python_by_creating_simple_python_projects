@@ -16,7 +16,7 @@ class NewQuestion:
 
     # Create four possible answers
     def choice(self):
-        print("What are the four possible answers?: ")
+        print("\nWhat are the four possible answers?: ")
         choice = {}
         for i in range(1, 5):
             user_choices = input(f"Choice {i}: ")
@@ -28,10 +28,24 @@ class NewQuestion:
 
     # Create the correct answer
     def answer(self):
-        self.ques_answer = input("What is the correct answer? [ A | B | C | D ]: ").strip().upper()
+        try:
+            self.ques_answer = input("\nWhat is the correct answer? [ 1 | 2 | 3 | 4 ]: ").strip()
 
-        if self.ques_answer not in ["A", "B", "C", "D"]:
-            print("Wrong input. Please type A, B, C or D only.")
+            if self.ques_answer not in ["1", "2", "3", "4"]:
+                print("Invalid input. Please enter a number between 1 and 4.")
+                return self.answer()
+            
+        except KeyboardInterrupt:
+            print("\nExiting the program...")
+            time.sleep(1)
+            exit()
+        
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 4.")
+            return self.answer()
+        
+        except TypeError:
+            print("Invalid input. Please enter a number between 1 and 4.")
             return self.answer()
         
         time.sleep(1)
