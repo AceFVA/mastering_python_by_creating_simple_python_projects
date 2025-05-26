@@ -1,8 +1,12 @@
 import os
 import json 
+import rich
 
 from questionnaire_dictionary import QuestionDictionary
 from save_question import SaveQuestion 
+from rich.console import Console
+
+console = Console()
 
 class ViewQuestion(QuestionDictionary, SaveQuestion):
     def __init__(self):
@@ -11,21 +15,21 @@ class ViewQuestion(QuestionDictionary, SaveQuestion):
 
     def view_question(self):
         for key, value in self.main_questionnaire_dict.items():
-            print(f"{key}: ")
+            console.print(f"[blue]{key}: [/blue]")
             print(f"    {value['Question']}")
 
             for choice_key, choice_value in value['Choices'].items():
-                print(f"        {choice_key}: {choice_value}")
+                console.print(f"        [blue]{choice_key}:[/blue] {choice_value}")
 
-            print(f"    Answer: {value['Answer']}")
+            console.print(f"    [blue]Answer:[/blue] {value['Answer']}")
 
     def select_file(self):
-        selected_file = input("Enter the quiz file name to view (without .json): ")
+        selected_file = console.input("[green]Enter the quiz file name to view (without .json):[/green] ")
         self.file_name = selected_file
         self.file_selected = f"{selected_file}.json"
 
         if not os.path.exists(self.file_selected):
-            print("File not found. Please check the name and try again.")
+            console.print("[red]File not found.[/red] Please check the name and try again.")
             return False
 
         try:
@@ -33,17 +37,17 @@ class ViewQuestion(QuestionDictionary, SaveQuestion):
             self.main_questionnaire_dict = questions_loader.loading_questions()
 
             if self.main_questionnaire_dict:
-                print(f"Loaded questions from {self.file_selected}:")
+                console.print(f"[yellow]Loaded questions from {self.file_selected}:[/yellow]")
                 return True
             
             else:
-                print("No questions found in the file.")
+                console.print("[red]No questions found in the file.[/red]")
                 return False
 
         except json.JSONDecodeError:
-            print("Error: The file is not in valid JSON format.")
+            console.print("[red]Error:[/red] The file is not in valid JSON format.")
             return False
 
         except OSError:
-            print("Error: Could not open the file.")
+            console.print("[red]Error:[/red] Could not open the file.")
             return False
