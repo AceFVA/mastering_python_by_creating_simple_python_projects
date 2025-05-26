@@ -35,7 +35,7 @@ class EditQuestion(NewQuestion, ViewQuestion, SaveQuestion):
                 "Answer": user_new_q_answer
             }
 
-            console.print(f"[green]{changing_question} has been changed successfully![/green]")
+            console.print(f"\n[green]{changing_question} has been changed successfully![/green]")
 
             saver = SaveQuestion(self.file_name)
             saver.saving_question(self.main_questionnaire_dict)
@@ -51,7 +51,7 @@ class EditQuestion(NewQuestion, ViewQuestion, SaveQuestion):
         if removing_question.strip().capitalize() in self.main_questionnaire_dict:
             # remove the question, along with the choices and answer
             self.main_questionnaire_dict.pop(removing_question)
-            console.print(f"[green]{removing_question} has been removed successfully![/green]")
+            console.print(f"\n[green]{removing_question} has been removed successfully![/green]")
 
             adjusted_main_dict = {}
             new_question_num = 1
@@ -73,4 +73,4 @@ class EditQuestion(NewQuestion, ViewQuestion, SaveQuestion):
             saver.saving_question(self.main_questionnaire_dict)
 
         else:
-            print("Question does not exists.")
+            console.print("\n[red]Question does not exists.[/red]")
