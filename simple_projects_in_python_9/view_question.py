@@ -24,7 +24,7 @@ class ViewQuestion(QuestionDictionary, SaveQuestion):
             console.print(f"    [blue]Answer:[/blue] {value['Answer']}")
 
     def select_file(self):
-        selected_file = console.input("[green]Enter the quiz file name to view (without .json):[/green] ")
+        selected_file = console.input("\n[green]Enter the quiz file name to view (without .json):[/green] ")
         self.file_name = selected_file
         self.file_selected = f"{selected_file}.json"
 
@@ -37,7 +37,7 @@ class ViewQuestion(QuestionDictionary, SaveQuestion):
             self.main_questionnaire_dict = questions_loader.loading_questions()
 
             if self.main_questionnaire_dict:
-                console.print(f"[yellow]Loaded questions from {self.file_selected}:[/yellow]")
+                console.print(f"\n[yellow]Loaded questions from {self.file_selected}:[/yellow]\n")
                 return True
             
             else:
