@@ -24,11 +24,11 @@ class UserInput(EditQuestion):
         console.print("5. Exit")
 
     def user_selecting_option(self):
-        selected_option = int(console.input("\n[green]Please select an option[/green] (1-5): "))
+        selected_option = int(console.input("\n[green]Please select an option[/green] ( 1 - 5 ): "))
 
         try:
             if selected_option == 1:
-                console.print("\n[yellow]How this works?[/yellow]")
+                console.print("\n[bold yellow]How this works?[/bold yellow]")
                 time.sleep(1)
                 console.print("1. Enter a question")
                 time.sleep(1)
@@ -80,7 +80,7 @@ class UserInput(EditQuestion):
     def user_adding_questions(self):
         try:
             # ask the user if they want to add another question
-            add_another_question = console.input("\n[blue]Do you want to add another question?[/blue] [green](Y/N)[/green]: ").strip()
+            add_another_question = console.input("\n[blue]Do you want to add another question?[/blue] [green]( Y / N )[/green]: ").strip()
 
             if add_another_question.strip().upper() == "N":
                 return "break"
@@ -100,7 +100,7 @@ class UserInput(EditQuestion):
         
     def user_saving_questions(self):
         try:
-            user_decision = console.input("\n[blue]Do you want to save your questions?[/blue] [green](Y/N)[/green]: ").strip()
+            user_decision = console.input("\n[blue]Do you want to save your questions?[/blue] [green]( Y / N )[/green]: ").strip()
             time.sleep(1)
 
             if user_decision.strip().upper() == "Y":
