@@ -15,7 +15,7 @@ class NewQuestion:
 
     # Create a new question
     def question(self):
-        self.user_question = console.input("[blue]What is your question?: [/blue]").strip()
+        self.user_question = console.input("\n[blue]What is your question?: [/blue]").strip()
         time.sleep(1)
         return self.user_question
 
@@ -37,7 +37,7 @@ class NewQuestion:
             self.ques_answer = console.input("\n[blue]What is the correct answer? [ 1 | 2 | 3 | 4 ]: [/blue]").strip()
 
             if self.ques_answer not in ["1", "2", "3", "4"]:
-                console.print("[red]Invalid input.[/red] Please enter a number between 1 and 4.")
+                console.print("\n[red]Invalid input.[/red] Please enter a number between 1 and 4.")
                 return self.answer()
             
         except KeyboardInterrupt:
@@ -46,11 +46,11 @@ class NewQuestion:
             exit()
         
         except ValueError:
-            console.print("[red]Invalid input.[/red] Please enter a number between 1 and 4.")
+            console.print("\n[red]Invalid input.[/red] Please enter a number between 1 and 4.")
             return self.answer()
         
         except TypeError:
-            console.print("[red]Invalid input.[/red] Please enter a number between 1 and 4.")
+            console.print("\n[red]Invalid input.[/red] Please enter a number between 1 and 4.")
             return self.answer()
         
         time.sleep(1)
