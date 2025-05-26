@@ -1,23 +1,27 @@
 import time
+import rich
 
 from new_question import NewQuestion
 from view_question import ViewQuestion
 from save_question import SaveQuestion
+from rich.console import Console
+
+console = Console()
 
 class EditQuestion(NewQuestion, ViewQuestion, SaveQuestion):
     def __init__(self):
         super().__init__()
 
     def change_question(self):
-        self.file_name = input("Enter the quiz file name to edit (without .json): ")
+        self.file_name = console.input("[green]Enter the quiz file name to edit (without .json): [/green]").strip()
         loader = SaveQuestion(self.file_name)
         self.main_questionnaire_dict = loader.loading_questions()
 
-        print(f"Loaded questions from {self.file_name}.json:")
+        console.print(f"[yellow]Loaded questions from {self.file_name}.json:[/yellow]")
         time.sleep(1)
         self.view_question()
 
-        changing_question = input("Which question do you want to edit? (e.g. Question 1): ")
+        changing_question = console.input("[green]Which question do you want to edit? (e.g. Question 1):[/green] ").strip()
 
         if changing_question.strip().capitalize() in self.main_questionnaire_dict:
             # ask the user new question, choices, and answer
@@ -31,23 +35,23 @@ class EditQuestion(NewQuestion, ViewQuestion, SaveQuestion):
                 "Answer": user_new_q_answer
             }
 
-            print(f"{changing_question} has been changed successfully!")
+            console.print(f"[green]{changing_question} has been changed successfully![/green]")
 
             saver = SaveQuestion(self.file_name)
             saver.saving_question(self.main_questionnaire_dict)
 
         else:
-            print("Question does not exist.")
+            console.print("[red]Question does not exist.[/red]")
 
     def remove_question(self):
         self.view_question()
 
-        removing_question = input("Which question do you want to remove? (e.g. Question 1): ")
+        removing_question = console.input("[green]Which question do you want to remove? (e.g. Question 1): [/green]").strip()
 
         if removing_question.strip().capitalize() in self.main_questionnaire_dict:
             # remove the question, along with the choices and answer
             self.main_questionnaire_dict.pop(removing_question)
-            print(f"{removing_question} has been removed successfully!")
+            console.print(f"[green]{removing_question} has been removed successfully![/green]")
 
             adjusted_main_dict = {}
             new_question_num = 1
