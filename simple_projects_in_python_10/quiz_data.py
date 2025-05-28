@@ -7,21 +7,22 @@ from rich.console import Console
 class QuizData:
     def __init__(self):
         self.console = Console()
+        self.quiz_data = None
+        self.quiz_name = None
 
     def loading_quiz_data(self):
-        self.selected_file = self.console.input("\n[green]Choose the quiz you want to answer by entering the quiz file name (without .json):[/green] ")
+        self.quiz_name = self.console.input("\n[green]Choose the quiz you want to answer by entering the quiz file name (without .json):[/green] ").strip()
+        file_name = f"{self.quiz_name}.json"
 
-        if os.path.exists(f"{self.selected_file}.json"):
+        if os.path.exists(file_name):
             try:
-                with open(f"{self.selected_file}.json", "r") as file:
+                with open(file_name, "r") as file:
                     try:
-                    # load the quiz questions and answers from the file
-                        self.quiz_data = json.load(file) 
-
+                        self.quiz_data = json.load(file)
                     except json.JSONDecodeError:
                         self.console.print("[red]Error loading quiz data. Please check the file format.[/red]")
                         exit(1)
-            
+
             except IOError:
                 self.console.print("[red]Error opening quiz data file.[/red]")
                 exit(1)

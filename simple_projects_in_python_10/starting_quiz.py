@@ -7,8 +7,9 @@ import os
 from rich.console import Console
 
 class StartQuiz:
-    def __init__(self, quiz_data):
+    def __init__(self, quiz_data, quiz_name):
         self.quiz_data = quiz_data
+        self.quiz_name = quiz_name
         self.console = Console()
         self.final_score = 0
         self.base_score = 1000
@@ -96,8 +97,8 @@ class StartQuiz:
                 self.player_decision = input("\nDo you want to save your score? (Y/N): ").upper()
                 if self.player_decision == "Y":
                     # save the score to a file for the leaderboard
-                    if os.path.exists("leaderboard.json"):
-                        with open("leaderboard.json", "r") as file:
+                    if os.path.exists(f"leaderboard_data_{self.quiz_name}.json"):
+                        with open(f"leaderboard_data_{self.quiz_name}.json", "r") as file:
                             try:
                                 self.leaderboard_data = json.load(file)
 
@@ -109,7 +110,7 @@ class StartQuiz:
                         self.leaderboard_data = {}
 
                     self.leaderboard_data[self.player_name] = int(self.final_score)
-                    with open("leaderboard.json", "w") as file:
+                    with open(f"leaderboard_data_{self.quiz_name}.json", "w") as file:
                         json.dump(self.leaderboard_data, file, indent = 4)
 
                     self.console.print("\n[green]Score saved![/green]")

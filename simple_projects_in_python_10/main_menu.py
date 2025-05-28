@@ -27,23 +27,22 @@ class MainMenu(QuizData, StartQuiz, Leaderboard):
                 self.loading_quiz_data()
 
                 # Start Quiz
-                quiz = StartQuiz(self.quiz_data)
+                quiz = StartQuiz(self.quiz_data, self.quiz_name)
                 result = quiz.start_quiz()
 
                 if result == "menu":
                     self.display_menu()
 
                 elif result == "exit":
-                    self.console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
-                    time.sleep(1)
                     exit()
 
             elif self.selected_option == 2:
-                # View Leaderboard
+                self.loading_quiz_data()
                 self.console.print("\n[yellow]Displaying the leaderboard...[/yellow]\n")
                 time.sleep(3)
 
-                result = self.display_leaderboard()
+                leaderboard = Leaderboard(self.quiz_name)
+                result = leaderboard.display_leaderboard()
 
                 if result == "menu":
                     self.display_menu()

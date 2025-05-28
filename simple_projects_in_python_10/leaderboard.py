@@ -7,16 +7,17 @@ from rich.console import Console
 from rich.table import Table
 
 class Leaderboard:
-    def __init__(self):
+    def __init__(self, quiz_name):
         self.console = Console()
-        self.time = time
+        self.quiz_name = quiz_name
+        self.file_name = f"leaderboard_data_{self.quiz_name}.json"
         self.table = None
 
     def display_leaderboard(self):
         # load the leaderboard data from the file
-        if os.path.exists("leaderboard.json"):
+        if os.path.exists(f"{self.file_name}"):
             try:
-                with open("leaderboard.json", "r") as file:
+                with open(f"{self.file_name}", "r") as file:
                     try:
                         self.leaderboard_data = json.load(file)
 
