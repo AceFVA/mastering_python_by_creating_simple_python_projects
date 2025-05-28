@@ -42,7 +42,14 @@ class MainMenu(QuizData, StartQuiz, Leaderboard):
                 # View Leaderboard
                 self.console.print("\n[yellow]Displaying the leaderboard...[/yellow]\n")
                 time.sleep(3)
-                self.display_leaderboard()
+
+                result = self.display_leaderboard()
+
+                if result == "menu":
+                    self.display_menu()
+
+                elif result == "exit":
+                    exit()
 
             elif self.selected_option == 3:
                 # Exit

@@ -55,18 +55,19 @@ class Leaderboard:
             self.player_decision = input("\nDo you want to return to the main menu? (Y/N): ").upper()
             if self.player_decision == "Y":
                 self.console.print("\n[yellow]Returning to the main menu...[/yellow]")
-                self.display_menu()
+                time.sleep(1)
+                return "menu"
 
             elif self.player_decision == "N":
                 self.console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
-                exit()
+                time.sleep(1)
+                return "exit"
 
             else:
                 self.console.print("\n[red]Invalid option.[/red] Please try again.")
                 self.display_leaderboard()
 
         except KeyboardInterrupt:
-            self.console.print("\n[red]Input interrupted by the user.[/red]")
-            self.console.print("\n[yellow]Returning to menu...[/yellow]")
-            self.time.sleep(1)
-            self.display_menu()
+            self.console.print("\n[red]Input interrupted by user.[/red]")
+            self.console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+            exit()
