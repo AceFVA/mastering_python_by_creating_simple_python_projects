@@ -27,7 +27,7 @@ class StartQuiz:
             self.console.print("\n[red]Input interrupted by the user.[/red]")
             self.console.print("[yellow]Returning to the main menu...[/yellow]")
             time.sleep(1)
-            self.display_menu()
+            return "menu"
 
         self.console.print(f"\nHello, [blue]{self.player_name}[/blue]! Let's start the quiz.")
         self.console.print("[yellow]Starting the quiz...[/yellow]")
@@ -121,12 +121,12 @@ class StartQuiz:
                 if self.player_exit == "Y":
                     self.console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
                     time.sleep(1)
-                    break
+                    return "exit"
 
                 else:
                     self.console.print("\n[yellow]Returning to the main menu...[/yellow]")
                     time.sleep(1)
-                    return self.display_menu()
+                    return "menu"
 
             self.console.print("\n[yellow]Next question...[/yellow]")
             time.sleep(3)
