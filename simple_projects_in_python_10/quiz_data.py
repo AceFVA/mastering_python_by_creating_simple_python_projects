@@ -7,12 +7,14 @@ from rich.console import Console
 class QuizData:
     def __init__(self):
         self.console = Console()
-        self.quiz_data = None
 
-    def loading_quiz_data(self):
-        if os.path.exists("quiz_questionnaires.json"):
+    def loading_quiz_data(self, quiz_data):
+        self.quiz_data = quiz_data
+        self.selected_file = self.console.input("\n[green]Choose the quiz you want to answer by entering the quiz file name (without .json):[/green] ")
+
+        if os.path.exists(f"{self.selected_file}.json"):
             try:
-                with open("quiz_questionnaires.json", "r") as file:
+                with open(f"{self.selected_file}.json", "r") as file:
                     try:
                     # load the quiz questions and answers from the file
                         self.quiz_data = json.load(file) 
@@ -32,3 +34,5 @@ class QuizData:
         else:
             self.console.print("[red]Quiz data file not found. Please create a quiz first.[/red]")
             exit(1)
+
+        return self.quiz_data
