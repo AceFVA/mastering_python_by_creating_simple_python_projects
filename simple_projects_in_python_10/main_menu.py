@@ -3,8 +3,13 @@ import time
 
 from rich.console import Console
 
-class MainMenu:
+from quiz_data import QuizData
+from starting_quiz import StartQuiz
+from leaderboard import Leaderboard
+
+class MainMenu(QuizData, StartQuiz, Leaderboard):
     def __init__(self):
+        super().__init__()
         self.console = Console()
 
     def display_menu(self):
@@ -19,13 +24,13 @@ class MainMenu:
             
             if self.selected_option == 1:
                 # Start Quiz
-                self.start_quiz()
+                self.start_quiz(self.quiz_data)
 
             elif self.selected_option == 2:
                 # View Leaderboard
                 self.console.print("\n[yellow]Displaying the leaderboard...[/yellow]\n")
                 time.sleep(3)
-                self.leaderboard()
+                self.display_leaderboard()
 
             elif self.selected_option == 3:
                 # Exit
