@@ -57,9 +57,13 @@ class Leaderboard:
                 self.console.print("\n[yellow]Returning to the main menu...[/yellow]")
                 self.display_menu()
 
-            else:
+            elif self.player_decision == "N":
                 self.console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
                 exit()
+
+            else:
+                self.console.print("\n[red]Invalid option.[/red] Please try again.")
+                self.display_leaderboard()
 
         except KeyboardInterrupt:
             self.console.print("\n[red]Input interrupted by the user.[/red]")
