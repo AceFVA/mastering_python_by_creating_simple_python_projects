@@ -23,8 +23,11 @@ class MainMenu(QuizData, StartQuiz, Leaderboard):
             self.selected_option = int(input("\nPlease select an option (1-3): "))
             
             if self.selected_option == 1:
+                # Load quiz data
+                self.loading_quiz_data()
+
                 # Start Quiz
-                self.start_quiz(self.quiz_data)
+                self.start_quiz()
 
             elif self.selected_option == 2:
                 # View Leaderboard
