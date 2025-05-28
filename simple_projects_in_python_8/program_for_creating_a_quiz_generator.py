@@ -249,9 +249,14 @@ def leaderboard():
             console.print("\n[yellow]Returning to the main menu...[/yellow]")
             display_menu()
 
-        else:
+        elif player_decision == "N":
             console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+            time.sleep(1)
             exit()
+
+        else:
+            console.print("\n[red]Invalid option.[/red] Please try again.")
+            leaderboard()
 
     except KeyboardInterrupt:
         console.print("\n[red]Input interrupted by the user.[/red]")
