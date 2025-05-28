@@ -8,6 +8,7 @@ from rich.console import Console
 
 class StartQuiz:
     def __init__(self, quiz_data):
+        self.quiz_data = quiz_data
         self.console = Console()
         self.final_score = 0
         self.base_score = 1000
@@ -46,15 +47,15 @@ class StartQuiz:
 
         for value in self.question_key:
             self.question_num = f"{value.split()[-1]}" # Gets the number of the question (1, 2, 3, etc.)
-            self.question = self.quiz_data[value][f"Q{self.question_num}"] # Gets the question itself
-            self.question_ans = self.quiz_data[value][f"Answer{self.question_num}"] # Gets the correct answer for that question
+            self.question = self.quiz_data[value][f"Question"] # Gets the question itself
+            self.question_ans = chr(int(self.quiz_data[value]["Answer"]) + 64) # Gets the correct answer for that question (in letter format, A, B, C, D)
 
             self.console.print(f"\n[blue]{self.question}[/blue]")
             time_start = time.time() # Start time for the question
 
             # show the choices for the question
             ascii_value = 65 # ASCII value of 'A'
-            for choice_key, choice_value in self.quiz_data[value][f"Choices{self.question_num}"].items():
+            for choice_key, choice_value in self.quiz_data[value]["Choices"].items():
                 self.console.print(f"    [green]{chr(ascii_value)}.[/green] {choice_value}")
                 ascii_value += 1
 
@@ -63,14 +64,6 @@ class StartQuiz:
             while self.player_ans not in ["A", "B", "C", "D"]:
                 self.console.print("[red]Invalid choice.[/red] Please select a valid option.")
                 self.player_ans = input("\nPlease select your answer [A | B | C | D]: ").upper()
-
-            for choice_key, choice_value in self.quiz_data[value][f"Choices{self.question_num}"].items():
-                choice_num = choice_key.split()[-1] # Gets the number of the choice (1, 2, 3, etc.)
-                ascii_value = 65
-                choice_key = chr(ascii_value + int(choice_num) - 1)
-                if self.player_ans == choice_key:
-                    self.player_ans = choice_value
-                    break
             
             time_end = time.time()
             time_taken = time_end - time_start
@@ -89,12 +82,14 @@ class StartQuiz:
                     self.final_score += self.question_score
                     
                 else:
-                    self.console.print(f"[red]Incorrect![/red] The correct answer is: [green]{self.question_ans}[/green]")
+                    choice_number = str(ord(self.question_ans) - 64)
+                    self.exact_answer = self.quiz_data[value]["Choices"][f"Choice {choice_number}"]
+                    self.console.print(f"[red]Incorrect![/red] The correct answer is: [green]{self.exact_answer}[/green]")
 
             self.console.print(f"\nScore: [cyan]{int(self.final_score)}[/cyan]")
             
-            answered_questions += 1
-            if answered_questions == self.total_questions:
+            self.answered_questions += 1
+            if self.answered_questions == self.total_questions:
                 self.console.print("\n[bold blue]Quiz completed![/bold blue]")
                 self.console.print(f"[yellow]Your final score:[/yellow] {int(self.final_score)}")
 
@@ -125,11 +120,13 @@ class StartQuiz:
                 self.player_exit = input("\nDo you want to exit the quiz? (Y/N): ").upper()
                 if self.player_exit == "Y":
                     self.console.print("\n[yellow]Exiting the quiz... Goodbye![/yellow]")
+                    time.sleep(1)
                     break
 
                 else:
                     self.console.print("\n[yellow]Returning to the main menu...[/yellow]")
-                    self.display_menu()
+                    time.sleep(1)
+                    return self.display_menu()
 
             self.console.print("\n[yellow]Next question...[/yellow]")
             time.sleep(3)
