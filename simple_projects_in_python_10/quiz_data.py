@@ -8,8 +8,7 @@ class QuizData:
     def __init__(self):
         self.console = Console()
 
-    def loading_quiz_data(self, quiz_data):
-        self.quiz_data = quiz_data
+    def loading_quiz_data(self):
         self.selected_file = self.console.input("\n[green]Choose the quiz you want to answer by entering the quiz file name (without .json):[/green] ")
 
         if os.path.exists(f"{self.selected_file}.json"):
