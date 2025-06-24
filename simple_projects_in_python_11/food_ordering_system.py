@@ -72,30 +72,30 @@ menu = [
 class App:
     def __init__(self, root):
         self.root = root
-        self.root.title("Bahay ni Eys - Order Menu")
+        self.root.title("BAHAY NI EYS - Order Menu")
         self.customer = None
 
-        self.label = tk.Label(root, text="Enter your name:")
+        self.label = tk.Label(root, text = "Enter your name:")
         self.label.pack()
 
         self.name_entry = tk.Entry(root)
         self.name_entry.pack()
 
-        self.start_button = tk.Button(root, text="Start Order", command=self.start_order)
-        self.start_button.pack(pady=5)
+        self.start_button = tk.Button(root, text = "Start Order", command = self.start_order)
+        self.start_button.pack(pady = 5)
 
-        self.menu_listbox = tk.Listbox(root, selectmode=tk.MULTIPLE, width=40)
+        self.menu_listbox = tk.Listbox(root, selectmode = tk.MULTIPLE, width = 40)
         for item in menu:
             self.menu_listbox.insert(tk.END, item.show())
         self.menu_listbox.config(state=tk.DISABLED)
         self.menu_listbox.pack()
 
-        self.order_button = tk.Button(root, text="Place Order", command=self.place_order)
-        self.order_button.config(state=tk.DISABLED)
+        self.order_button = tk.Button(root, text = "Place Order", command = self.place_order)
+        self.order_button.config(state = tk.DISABLED)
         self.order_button.pack(pady=5)
 
-        self.result = tk.Text(root, height=15, width=50, state=tk.DISABLED)
-        self.result.pack(pady=10)
+        self.result = tk.Text(root, height = 15, width = 50, state = tk.DISABLED)
+        self.result.pack(pady = 10)
 
     def start_order(self):
         name = self.name_entry.get().strip()
@@ -104,10 +104,10 @@ class App:
             return
 
         self.customer = Customer(name)
-        self.menu_listbox.config(state=tk.NORMAL)
-        self.order_button.config(state=tk.NORMAL)
-        self.name_entry.config(state=tk.DISABLED)
-        self.start_button.config(state=tk.DISABLED)
+        self.menu_listbox.config(state = tk.NORMAL)
+        self.order_button.config(state = tk.NORMAL)
+        self.name_entry.config(state = tk.DISABLED)
+        self.start_button.config(state = tk.DISABLED)
 
     def place_order(self):
         selections = self.menu_listbox.curselection()
@@ -115,14 +115,14 @@ class App:
             messagebox.showinfo("No Selection", "Please select at least one item.")
             return
 
-        for i in selections:
-            self.customer.place_order(menu[i])
+        for num in selections:
+            self.customer.place_order(menu[num])
 
         summary = self.customer.show_summary()
-        self.result.config(state=tk.NORMAL)
+        self.result.config(state = tk.NORMAL)
         self.result.delete("1.0", tk.END)
         self.result.insert(tk.END, summary)
-        self.result.config(state=tk.DISABLED)
+        self.result.config(state = tk.DISABLED)
 
 
 # ===== Run the App =====
